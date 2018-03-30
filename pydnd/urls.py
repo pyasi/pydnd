@@ -1,4 +1,4 @@
-"""py-dnd URL Configuration
+"""pydnd URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -18,5 +18,6 @@ from django.urls import path, include, re_path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^', include('monsters.urls')),
+    re_path(r'^', include('pydnd.monsters.urls')),
+    re_path(r'^', include('pydnd.skills.urls')),
 ]
