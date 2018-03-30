@@ -1,7 +1,5 @@
 from django.contrib import admin
 
-from .models import Monster, SpecialAbility, Action
+from .models import Monster
 
 admin.site.register(Monster)
-admin.site.register(SpecialAbility)
-admin.site.register(Action)

@@ -25,7 +25,7 @@ SECRET_KEY = 'xf9m*8-5rj&9)*5yq2t)xxyt)$e0hci6g=-8jx)jf&hk9%m0v='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['630de29c.ngrok.io']
 
 
 # Application definition
@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pydnd.monsters',
-    'pydnd.skills',
     'rest_framework',
+    'pydnd.skills',
+    'pydnd.monsters',
 ]
 
 MIDDLEWARE = [

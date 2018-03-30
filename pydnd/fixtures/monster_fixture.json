@@ -1,0 +1,161 @@
+[{
+	"model": "skills.specialability",
+	"pk": 1,
+	"fields": {
+		"name": "Amphibious",
+		"desc": "The aboleth can breathe air and water.",
+		"damage_bonus": null,
+		"damage_dice": null,
+		"attack_bonus": 0.0
+	}
+}, {
+	"model": "skills.specialability",
+	"pk": 2,
+	"fields": {
+		"name": "Mucous Cloud",
+		"desc": "While underwater, the aboleth is surrounded by transformative mucus. A creature that touches the aboleth or that hits it with a melee attack while within 5 ft. of it must make a DC 14 Constitution saving throw. On a failure, the creature is diseased for 1d4 hours. The diseased creature can breathe only underwater.",
+		"damage_bonus": null,
+		"damage_dice": null,
+		"attack_bonus": 0.0
+	}
+}, {
+	"model": "skills.specialability",
+	"pk": 3,
+	"fields": {
+		"name": "Probing Telepathy",
+		"desc": "If a creature communicates telepathically with the aboleth, the aboleth learns the creature's greatest desires if the aboleth can see the creature.",
+		"damage_bonus": null,
+		"damage_dice": null,
+		"attack_bonus": 0.0
+	}
+}, {
+	"model": "skills.specialability",
+	"pk": 4,
+	"fields": {
+		"name": "Amphibious",
+		"desc": "The aboleth can breathe air and water.",
+		"damage_bonus": null,
+		"damage_dice": null,
+		"attack_bonus": 0.0
+	}
+}, {
+	"model": "skills.specialability",
+	"pk": 5,
+	"fields": {
+		"name": "Mucous Cloud",
+		"desc": "While underwater, the aboleth is surrounded by transformative mucus. A creature that touches the aboleth or that hits it with a melee attack while within 5 ft. of it must make a DC 14 Constitution saving throw. On a failure, the creature is diseased for 1d4 hours. The diseased creature can breathe only underwater.",
+		"damage_bonus": null,
+		"damage_dice": null,
+		"attack_bonus": 0.0
+	}
+}, {
+	"model": "skills.specialability",
+	"pk": 6,
+	"fields": {
+		"name": "Probing Telepathy",
+		"desc": "If a creature communicates telepathically with the aboleth, the aboleth learns the creature's greatest desires if the aboleth can see the creature.",
+		"damage_bonus": null,
+		"damage_dice": null,
+		"attack_bonus": 0.0
+	}
+}, {
+	"model": "skills.action",
+	"pk": 1,
+	"fields": {
+		"name": "Multiattack",
+		"desc": "The aboleth makes three tentacle attacks.",
+		"damage_bonus": null,
+		"damage_dice": null,
+		"attack_bonus": 0.0
+	}
+}, {
+	"model": "skills.action",
+	"pk": 2,
+	"fields": {
+		"name": "Tail",
+		"desc": "Melee Weapon Attack: +9 to hit, reach 10 ft. one target. Hit: 15 (3d6 + 5) bludgeoning damage.",
+		"damage_bonus": 5.0,
+		"damage_dice": "3d6",
+		"attack_bonus": 9.0
+	}
+}, {
+	"model": "skills.action",
+	"pk": 3,
+	"fields": {
+		"name": "Multiattack",
+		"desc": "The aboleth makes three tentacle attacks.",
+		"damage_bonus": null,
+		"damage_dice": null,
+		"attack_bonus": 0.0
+	}
+}, {
+	"model": "skills.action",
+	"pk": 4,
+	"fields": {
+		"name": "Tail",
+		"desc": "Melee Weapon Attack: +9 to hit, reach 10 ft. one target. Hit: 15 (3d6 + 5) bludgeoning damage.",
+		"damage_bonus": 5.0,
+		"damage_dice": "3d6",
+		"attack_bonus": 9.0
+	}
+}, {
+	"model": "monsters.monster",
+	"pk": 1,
+	"fields": {
+		"name": "Aboleth",
+		"size": "Large",
+		"type": "aberration",
+		"subtype": "",
+		"alignment": "lawful evil",
+		"armor_class": 17.0,
+		"hit_points": 135.0,
+		"speed": "10 ft., swim 40 ft.",
+		"strength": 21.0,
+		"dexterity": 9.0,
+		"constitution": 15.0,
+		"intelligence": 18.0,
+		"wisdom": 15.0,
+		"charisma": null,
+		"medicine": null,
+		"religion": null,
+		"damage_vulnerabilities": "",
+		"damage_resistances": "",
+		"damage_immunities": "",
+		"condition_immunities": "",
+		"senses": "darkvision 120 ft., passive Perception 20",
+		"languages": "Deep Speech, telepathy 120 ft.",
+		"challenge_rating": 10.0,
+		"special_abilities": [1, 2, 3],
+		"actions": [1, 2]
+	}
+}, {
+	"model": "monsters.monster",
+	"pk": 2,
+	"fields": {
+		"name": "Dragon",
+		"size": "Large",
+		"type": "aberration",
+		"subtype": "",
+		"alignment": "lawful evil",
+		"armor_class": 17.0,
+		"hit_points": 135.0,
+		"speed": "10 ft., swim 40 ft.",
+		"strength": 21.0,
+		"dexterity": 9.0,
+		"constitution": 15.0,
+		"intelligence": 18.0,
+		"wisdom": 15.0,
+		"charisma": null,
+		"medicine": null,
+		"religion": null,
+		"damage_vulnerabilities": "",
+		"damage_resistances": "",
+		"damage_immunities": "",
+		"condition_immunities": "",
+		"senses": "darkvision 120 ft., passive Perception 20",
+		"languages": "Deep Speech, telepathy 120 ft.",
+		"challenge_rating": 10.0,
+		"special_abilities": [4, 5, 6],
+		"actions": [3, 4]
+	}
+}]

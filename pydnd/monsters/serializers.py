@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Monster, SpecialAbility, Action
+from .models import Monster
 
 
 class MonsterSerializer(serializers.ModelSerializer):
@@ -9,14 +9,8 @@ class MonsterSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class SpecialAbilitySerializer(serializers.ModelSerializer):
+class MonsterListSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = SpecialAbility
-        fields = '__all__'
-
-class ActionSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Action
-        fields = '__all__'
+        model = Monster
+        fields = ('id', 'name')
