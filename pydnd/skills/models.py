@@ -2,8 +2,8 @@ from django.db import models
 
 
 class SpecialAbility(models.Model):
-    name = models.CharField(max_length=100)
-    desc = models.CharField(max_length=500)
+    name = models.CharField(max_length=100, unique=True)
+    desc = models.CharField(max_length=10000)
     damage_bonus = models.FloatField(null=True)
     damage_dice = models.CharField(max_length=20, null=True)
     attack_bonus = models.FloatField(null=True)
@@ -13,8 +13,8 @@ class SpecialAbility(models.Model):
 
 
 class Action(models.Model):
-    name = models.CharField(max_length=100)
-    desc = models.CharField(max_length=500)
+    name = models.CharField(max_length=100, unique=True)
+    desc = models.CharField(max_length=10000)
     damage_bonus = models.FloatField(null=True)
     damage_dice = models.CharField(max_length=20, null=True)
     attack_bonus = models.FloatField(null=True)

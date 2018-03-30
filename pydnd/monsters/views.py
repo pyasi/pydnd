@@ -3,10 +3,12 @@ from rest_framework import generics, status
 from rest_framework.response import Response
 from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import get_object_or_404
 
-from .models import Monster
+from .models import Monster, Action, SpecialAbility
 from .serializers import MonsterSerializer, MonsterListSerializer
 from pydnd.skills.serializers import SpecialAbilitySerializer, ActionSerializer
+
 
 
 # TODO Remove Post ability - Admin required?
@@ -18,19 +20,29 @@ class MonsterList(generics.ListCreateAPIView):
 
         data = request.data
 
-        special_abilities = data.pop('special_abilities')
-        abilities = []
-        for ability in special_abilities:
-            special_ability = SpecialAbilitySerializer(data=ability)
-            if special_ability.is_valid():
-                abilities.append(special_ability.save())
+        try:
+            special_abilities = data.pop('special_abilities')
+            abilities = []
+            for ability in special_abilities:
+                special_ability = SpecialAbilitySerializer(data=ability)
+                if special_ability.is_valid():
+                    abilities.append(special_ability.save())
+                else:
+                    abilities.append(get_object_or_404(SpecialAbility, name=special_ability.initial_data['name']))
+        except KeyError:
+            pass
 
-        actions = data.pop('actions')
-        monster_actions = []
-        for action in actions:
-            action = ActionSerializer(data=action)
-            if action.is_valid():
-                monster_actions.append(action.save())
+        try:
+            actions = data.pop('actions')
+            monster_actions = []
+            for action in actions:
+                action = ActionSerializer(data=action)
+                if action.is_valid():
+                    monster_actions.append(action.save())
+                else:
+                    monster_actions.append(get_object_or_404(Action, name=action.initial_data['name']))
+        except KeyError:
+            pass
 
         monster = MonsterSerializer(data=data)
         if monster.is_valid():
@@ -39,6 +51,8 @@ class MonsterList(generics.ListCreateAPIView):
                 monster_object.special_abilities.add(ability)
             for action in monster_actions:
                 monster_object.actions.add(action)
+        else:
+            return Response(status.HTTP_400_BAD_REQUEST)
         return Response(data, status=status.HTTP_200_OK)
 
     # TODO remove this
