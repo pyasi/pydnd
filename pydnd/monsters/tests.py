@@ -1,12 +1,11 @@
-from rest_framework.test import APITestCase
-from rest_framework.test import APIRequestFactory
+from rest_framework.test import APITestCase, APIRequestFactory
 
 from pydnd.monsters import views
 
 
 class TestMonsterList(APITestCase):
 
-    fixtures = ['pydnd/fixtures/monster_fixture.json']
+    fixtures = ['pydnd/fixtures/db_fixture.json']
 
     def setUp(self):
         self.factory = APIRequestFactory()
@@ -33,7 +32,7 @@ class TestMonsterList(APITestCase):
 
 class TestMonsterGetter(APITestCase):
 
-    fixtures = ['pydnd/fixtures/monster_fixture.json']
+    fixtures = ['pydnd/fixtures/db_fixture.json']
 
     def setUp(self):
         self.factory = APIRequestFactory()
@@ -78,7 +77,7 @@ class TestMonsterGetter(APITestCase):
 
 class TestMonsterGetActions(APITestCase):
 
-    fixtures = ['pydnd/fixtures/monster_fixture.json']
+    fixtures = ['pydnd/fixtures/db_fixture.json']
 
     def setUp(self):
         self.factory = APIRequestFactory()
