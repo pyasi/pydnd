@@ -20,9 +20,9 @@ class MonsterList(generics.ListCreateAPIView):
 
         data = request.data
 
+        abilities = []
         try:
             special_abilities = data.pop('special_abilities')
-            abilities = []
             for ability in special_abilities:
                 special_ability = SpecialAbilitySerializer(data=ability)
                 if special_ability.is_valid():
@@ -32,9 +32,9 @@ class MonsterList(generics.ListCreateAPIView):
         except KeyError:
             pass
 
+        monster_actions = []
         try:
             actions = data.pop('actions')
-            monster_actions = []
             for action in actions:
                 action = ActionSerializer(data=action)
                 if action.is_valid():
@@ -96,7 +96,7 @@ def get_monster(name_or_id):
     if name_or_id.isdigit():
         queryset = Monster.objects.get(id=int(name_or_id))
     else:
-        queryset = Monster.objects.get(name=name_or_id)
+        queryset = Monster.objects.get(name__iexact=name_or_id)
     return model_to_dict(queryset)
 
 
