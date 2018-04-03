@@ -19,53 +19,10 @@ class MonsterList(generics.ListCreateAPIView):
 
         data = request.data
 
-        abilities = []
-        try:
-            special_abilities = data.pop('special_abilities')
-            for ability in special_abilities:
-                special_ability = SpecialAbilitySerializer(data=ability)
-                if special_ability.is_valid():
-                    abilities.append(special_ability.save())
-                else:
-                    abilities.append(get_object_or_404(SpecialAbility, name=special_ability.initial_data['name']))
-        except KeyError:
-            pass
-
-        monster_reactions = []
-        try:
-            reactions = data.pop('reactions')
-            for reaction in reactions:
-                reaction_model = ReactionSerializer(data=reaction)
-                if reaction_model.is_valid():
-                    monster_reactions.append(reaction_model.save())
-                else:
-                    monster_reactions.append(get_object_or_404(Reaction, name=reaction_model.initial_data['name']))
-        except KeyError:
-            pass
-
-        monster_legendary_actions = []
-        try:
-            legendary_actions = data.pop('legendary_actions')
-            for legendary_action in legendary_actions:
-                legendary_actions_model = LegendaryActionSerializer(data=legendary_action)
-                if legendary_actions_model.is_valid():
-                    monster_legendary_actions.append(legendary_actions_model.save())
-                else:
-                    monster_legendary_actions.append(get_object_or_404(LegendaryAction, name=legendary_actions_model.initial_data['name']))
-        except KeyError:
-            pass
-
-        monster_actions = []
-        try:
-            actions = data.pop('actions')
-            for action in actions:
-                action = ActionSerializer(data=action)
-                if action.is_valid():
-                    monster_actions.append(action.save())
-                else:
-                    monster_actions.append(get_object_or_404(Action, name=action.initial_data['name']))
-        except KeyError:
-            pass
+        abilities = create_attribute(data, 'special_abilities', SpecialAbilitySerializer, SpecialAbility)
+        reactions = create_attribute(data, 'reactions', ReactionSerializer, Reaction)
+        legendary_actions = create_attribute(data, 'legendary_actions', LegendaryActionSerializer, LegendaryAction)
+        actions = create_attribute(data, 'actions', ActionSerializer, Action)
 
         monster = MonsterSerializer(data=data)
         if monster.is_valid():
@@ -74,11 +31,11 @@ class MonsterList(generics.ListCreateAPIView):
             monster_object = get_object_or_404(Monster, name=monster.initial_data['name'])
         for ability in abilities:
             monster_object.special_abilities.add(ability)
-        for action in monster_actions:
+        for action in actions:
             monster_object.actions.add(action)
-        for reaction in monster_reactions:
+        for reaction in reactions:
             monster_object.reactions.add(reaction)
-        for legendary_action in monster_legendary_actions:
+        for legendary_action in legendary_actions:
             monster_object.legendary_actions.add(legendary_action)
 
         return Response(data, status=status.HTTP_200_OK)
@@ -90,6 +47,22 @@ class MonsterList(generics.ListCreateAPIView):
 
     queryset = Monster.objects.all()
     serializer_class = MonsterListSerializer
+
+
+def create_attribute(data, attribute_name, serializer, model_type):
+    monster_attributes = []
+    try:
+        attributes = data.pop(attribute_name)
+        for attribute in attributes:
+            attribute_model = serializer(data=attribute)
+            if attribute_model.is_valid():
+                monster_attributes.append(attribute_model.save())
+            else:
+                monster_attributes.append(get_object_or_404(model_type, name=attribute_model.initial_data['name']))
+    except KeyError:
+        pass
+
+    return monster_attributes
 
 
 class MonsterGet(APIView):
