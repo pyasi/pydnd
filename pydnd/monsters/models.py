@@ -34,3 +34,33 @@ class Monster(models.Model):
     strength = models.FloatField(null=True)
     dexterity = models.FloatField(null=True)
     constitution = models.FloatField(null=True)
+    intelligence = models.FloatField(null=True)
+    wisdom = models.FloatField(null=True)
+    charisma = models.FloatField(null=True)
+    medicine = models.FloatField(null=True)
+    religion = models.FloatField(null=True)
+    nature = models.FloatField(null=True)
+
+    # Saves
+    charisma_save = models.FloatField(null=True)
+    constitution_save = models.FloatField(null=True)
+    dexterity_save = models.FloatField(null=True)
+    strength_save = models.FloatField(null=True)
+    intelligence_save = models.FloatField(null=True)
+    wisdom_save = models.FloatField(null=True)
+    challenge_rating = models.FloatField(null=True)
+
+    # Immunities, vulnerabilities
+    damage_vulnerabilities = models.ManyToManyField(Damage_Type, null=True)
+    damage_resistances = models.ManyToManyField(Damage_Type, null=True)
+    damage_immunities = models.ManyToManyField(Damage_Type, null=True)
+    condition_immunities = models.ManyToManyField(Condition, null=True)
+
+    # ManyToMany Models
+    special_abilities = models.ManyToManyField(SpecialAbility, null=True)
+    actions = models.ManyToManyField(Action, null=True)
+    reactions = models.ManyToManyField(Reaction, null=True)
+    legendary_actions = models.ManyToManyField(LegendaryAction, null=True)
+
+    def __str__(self):
+        return self.name
