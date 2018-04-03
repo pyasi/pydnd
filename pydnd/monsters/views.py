@@ -146,6 +146,12 @@ def respond_to_monster_request(name_or_id, attribute=None):
         actions = get_monster_attribute(model, 'actions')
         model['actions'] = actions
 
+        reactions = get_monster_attribute(model, 'reactions')
+        model['reactions'] = reactions
+
+        legendary_actions = get_monster_attribute(model, 'legendary_actions')
+        model['legendary_actions'] = legendary_actions
+
         if attribute:
             return Response(model[attribute], status=status.HTTP_200_OK)
         else:
