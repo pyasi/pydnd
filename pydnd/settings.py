@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'pydnd.skills',
     'pydnd.monsters',
+    'pydnd.mechanics',
+    'pydnd.equipment',
 ]
 
 MIDDLEWARE = [
