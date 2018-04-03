@@ -123,3 +123,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REST_SESSION_LOGIN = False
+
+APPEND_SLASH = True
