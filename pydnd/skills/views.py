@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from django.forms.models import model_to_dict
 from django.shortcuts import get_object_or_404
 
-from .models import SpecialAbility, Action
-from .serializers import SpecialAbilitySerializer, ActionSerializer
+from .models import SpecialAbility, Action, Reaction, LegendaryAction
+from .serializers import SpecialAbilitySerializer, ActionSerializer, ReactionSerializer, LegendaryActionSerializer
 
 
 # TODO Remove Post ability
@@ -32,6 +32,7 @@ class SpecialAbilityGet(generics.RetrieveAPIView):
 
     serializer_class = SpecialAbilitySerializer
 
+
 # TODO Remove Post ability
 class ActionList(generics.ListCreateAPIView):
 
@@ -56,3 +57,16 @@ class ActionGet(generics.RetrieveAPIView):
         return Response(model_to_dict(action), status.HTTP_200_OK)
 
     serializer_class = SpecialAbilitySerializer
+
+
+class ReactionList(generics.ListAPIView):
+
+    queryset = Reaction.objects.all()
+    serializer_class = ReactionSerializer
+
+
+class LegendaryActionList(generics.ListAPIView):
+
+    queryset = LegendaryAction.objects.all()
+    serializer_class = LegendaryActionSerializer
+
