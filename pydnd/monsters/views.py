@@ -5,10 +5,9 @@ from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
 
-from .models import Monster, Action, SpecialAbility
+from .models import Monster, Action, SpecialAbility, Reaction, LegendaryAction
 from .serializers import MonsterSerializer, MonsterListSerializer
-from pydnd.skills.serializers import SpecialAbilitySerializer, ActionSerializer
-
+from pydnd.skills.serializers import SpecialAbilitySerializer, ActionSerializer, ReactionSerializer, LegendaryActionSerializer
 
 
 # TODO Remove Post ability - Admin required?
@@ -20,39 +19,25 @@ class MonsterList(generics.ListCreateAPIView):
 
         data = request.data
 
-        abilities = []
-        try:
-            special_abilities = data.pop('special_abilities')
-            for ability in special_abilities:
-                special_ability = SpecialAbilitySerializer(data=ability)
-                if special_ability.is_valid():
-                    abilities.append(special_ability.save())
-                else:
-                    abilities.append(get_object_or_404(SpecialAbility, name=special_ability.initial_data['name']))
-        except KeyError:
-            pass
-
-        monster_actions = []
-        try:
-            actions = data.pop('actions')
-            for action in actions:
-                action = ActionSerializer(data=action)
-                if action.is_valid():
-                    monster_actions.append(action.save())
-                else:
-                    monster_actions.append(get_object_or_404(Action, name=action.initial_data['name']))
-        except KeyError:
-            pass
+        abilities = create_attribute(data, 'special_abilities', SpecialAbilitySerializer, SpecialAbility)
+        reactions = create_attribute(data, 'reactions', ReactionSerializer, Reaction)
+        legendary_actions = create_attribute(data, 'legendary_actions', LegendaryActionSerializer, LegendaryAction)
+        actions = create_attribute(data, 'actions', ActionSerializer, Action)
 
         monster = MonsterSerializer(data=data)
         if monster.is_valid():
             monster_object = monster.save()
-            for ability in abilities:
-                monster_object.special_abilities.add(ability)
-            for action in monster_actions:
-                monster_object.actions.add(action)
         else:
-            return Response(status.HTTP_400_BAD_REQUEST)
+            monster_object = get_object_or_404(Monster, name=monster.initial_data['name'])
+        for ability in abilities:
+            monster_object.special_abilities.add(ability)
+        for action in actions:
+            monster_object.actions.add(action)
+        for reaction in reactions:
+            monster_object.reactions.add(reaction)
+        for legendary_action in legendary_actions:
+            monster_object.legendary_actions.add(legendary_action)
+
         return Response(data, status=status.HTTP_200_OK)
 
     # TODO remove this
@@ -62,6 +47,22 @@ class MonsterList(generics.ListCreateAPIView):
 
     queryset = Monster.objects.all()
     serializer_class = MonsterListSerializer
+
+
+def create_attribute(data, attribute_name, serializer, model_type):
+    monster_attributes = []
+    try:
+        attributes = data.pop(attribute_name)
+        for attribute in attributes:
+            attribute_model = serializer(data=attribute)
+            if attribute_model.is_valid():
+                monster_attributes.append(attribute_model.save())
+            else:
+                monster_attributes.append(get_object_or_404(model_type, name=attribute_model.initial_data['name']))
+    except KeyError:
+        pass
+
+    return monster_attributes
 
 
 class MonsterGet(APIView):
@@ -117,6 +118,12 @@ def respond_to_monster_request(name_or_id, attribute=None):
 
         actions = get_monster_attribute(model, 'actions')
         model['actions'] = actions
+
+        reactions = get_monster_attribute(model, 'reactions')
+        model['reactions'] = reactions
+
+        legendary_actions = get_monster_attribute(model, 'legendary_actions')
+        model['legendary_actions'] = legendary_actions
 
         if attribute:
             return Response(model[attribute], status=status.HTTP_200_OK)

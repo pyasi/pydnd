@@ -1,6 +1,17 @@
 from django.db import models
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 from pydnd.skills.models import SpecialAbility, Action
+from pydnd.mechanics.models import Language, Damage_Type, Condition
+=======
+=======
+>>>>>>> master
+=======
+>>>>>>> master
+from pydnd.skills.models import SpecialAbility, Action, Reaction, LegendaryAction
 
+>>>>>>> master
 
 class Monster(models.Model):
 
@@ -15,7 +26,7 @@ class Monster(models.Model):
     hit_die = models.FloatField(null=True)
     speed = models.CharField(max_length=500)
     senses = models.CharField(null=True, max_length=1000, blank=True)
-    languages = models.CharField(null=True, max_length=500, blank=True)
+    languages = models.ManyToManyField(Language, null = True)
 
     # Attributes
     arcana = models.FloatField(null=True)
@@ -51,17 +62,16 @@ class Monster(models.Model):
     challenge_rating = models.FloatField(null=True)
 
     # Immunities, vulnerabilities
-    damage_vulnerabilities = models.CharField(null=True, max_length=1000, blank=True)
-    damage_resistances = models.CharField(null=True, max_length=1000, blank=True)
-    damage_immunities = models.CharField(null=True, max_length=1000, blank=True)
-    condition_immunities = models.CharField(null=True, max_length=1000, blank=True)
+    damage_vulnerabilities = models.ManyToManyField(Damage_Type, null = True)
+    damage_resistances = models.ManyToManyField(Damage_Type, null = True)
+    damage_immunities = models.ManyToManyField(Damage_Type, null = True)
+    condition_immunities = models.ManyToManyField(Condition, null = True)
 
     # ManyToMany Models
     special_abilities = models.ManyToManyField(SpecialAbility, null=True)
     actions = models.ManyToManyField(Action, null=True)
-    # TODO create models
-    # reactions =
-    # legendary_actions =
+    reactions = models.ManyToManyField(Reaction, null=True)
+    legendary_actions = models.ManyToManyField(LegendaryAction, null=True)
 
     def __str__(self):
         return self.name
