@@ -1,5 +1,5 @@
 from django.db import models
-from pydnd.skills.models import SpecialAbility, Action
+from pydnd.skills.models import SpecialAbility, Action, Reaction, LegendaryAction
 
 
 class Monster(models.Model):
@@ -59,9 +59,8 @@ class Monster(models.Model):
     # ManyToMany Models
     special_abilities = models.ManyToManyField(SpecialAbility, null=True)
     actions = models.ManyToManyField(Action, null=True)
-    # TODO create models
-    # reactions =
-    # legendary_actions =
+    reactions = models.ManyToManyField(Reaction, null=True)
+    legendary_actions = models.ManyToManyField(LegendaryAction, null=True)
 
     def __str__(self):
         return self.name

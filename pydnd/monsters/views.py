@@ -5,10 +5,9 @@ from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
 
-from .models import Monster, Action, SpecialAbility
+from .models import Monster, Action, SpecialAbility, Reaction, LegendaryAction
 from .serializers import MonsterSerializer, MonsterListSerializer
-from pydnd.skills.serializers import SpecialAbilitySerializer, ActionSerializer
-
+from pydnd.skills.serializers import SpecialAbilitySerializer, ActionSerializer, ReactionSerializer, LegendaryActionSerializer
 
 
 # TODO Remove Post ability - Admin required?
@@ -32,6 +31,30 @@ class MonsterList(generics.ListCreateAPIView):
         except KeyError:
             pass
 
+        monster_reactions = []
+        try:
+            reactions = data.pop('reactions')
+            for reaction in reactions:
+                reaction_model = ReactionSerializer(data=reaction)
+                if reaction_model.is_valid():
+                    monster_reactions.append(reaction_model.save())
+                else:
+                    monster_reactions.append(get_object_or_404(Reaction, name=reaction_model.initial_data['name']))
+        except KeyError:
+            pass
+
+        monster_legendary_actions = []
+        try:
+            legendary_actions = data.pop('legendary_actions')
+            for legendary_action in legendary_actions:
+                legendary_actions_model = LegendaryActionSerializer(data=legendary_action)
+                if legendary_actions_model.is_valid():
+                    monster_legendary_actions.append(legendary_actions_model.save())
+                else:
+                    monster_legendary_actions.append(get_object_or_404(LegendaryAction, name=legendary_actions_model.initial_data['name']))
+        except KeyError:
+            pass
+
         monster_actions = []
         try:
             actions = data.pop('actions')
@@ -47,12 +70,17 @@ class MonsterList(generics.ListCreateAPIView):
         monster = MonsterSerializer(data=data)
         if monster.is_valid():
             monster_object = monster.save()
-            for ability in abilities:
-                monster_object.special_abilities.add(ability)
-            for action in monster_actions:
-                monster_object.actions.add(action)
         else:
-            return Response(status.HTTP_400_BAD_REQUEST)
+            monster_object = get_object_or_404(Monster, name=monster.initial_data['name'])
+        for ability in abilities:
+            monster_object.special_abilities.add(ability)
+        for action in monster_actions:
+            monster_object.actions.add(action)
+        for reaction in monster_reactions:
+            monster_object.reactions.add(reaction)
+        for legendary_action in monster_legendary_actions:
+            monster_object.legendary_actions.add(legendary_action)
+
         return Response(data, status=status.HTTP_200_OK)
 
     # TODO remove this
