@@ -20,4 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^', include('pydnd.monsters.urls')),
     re_path(r'^', include('pydnd.skills.urls')),
+    re_path(r'^', include('pydnd.equipment.urls')),
+
 ]

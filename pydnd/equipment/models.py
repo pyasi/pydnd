@@ -6,7 +6,7 @@ from pydnd.mechanics.models import Damage_Type
 
 
 
-class Weapon_Property(models.Model):
+class WeaponProperty(models.Model):
     name = models.CharField(max_length=100, unique=True)
     desc = models.CharField(max_length=10000)
 
@@ -23,7 +23,7 @@ class Weapon(models.Model):
     long_range = models.IntegerField(null=True)
     damage_type = models.ForeignKey(Damage_Type,on_delete=models.CASCADE)
     weight = models.IntegerField()
-    properties = models.ManyToManyField(Weapon_Property, null = True)
+    properties = models.ManyToManyField(WeaponProperty, null = True)
     damage_die_count = models.IntegerField()
     damage_die = models.IntegerField()
     cost_quantity = models.IntegerField()
@@ -50,7 +50,7 @@ class Armor(models.Model):
         return self.name
 
 
-class Equipment_Category(models.Model):
+class EquipmentCategory(models.Model):
     name = models.CharField(max_length=100, unique=True)
     desc = models.CharField(max_length=10000)
 
@@ -58,10 +58,10 @@ class Equipment_Category(models.Model):
         return self.name
 
 
-class Equipment_SubCategory(models.Model):
+class EquipmentSubCategory(models.Model):
     name = models.CharField(max_length=100, unique=True)
     desc = models.CharField(max_length=10000)
-    equipment_category = models.ForeignKey(Equipment_Category, on_delete=models.CASCADE)
+    equipment_category = models.ForeignKey(EquipmentCategory, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -70,7 +70,7 @@ class Equipment_SubCategory(models.Model):
 class Equipment(models.Model):
     name = models.CharField(max_length=100, unique=True)
     desc = models.CharField(max_length=10000)
-    equipment_category = models.ForeignKey(Equipment_SubCategory, on_delete=models.CASCADE)
+    equipment_category = models.ForeignKey(EquipmentSubCategory, on_delete=models.CASCADE)
     cost_quantity = models.IntegerField()
     cost_denom = models.CharField(max_length=2)
 
