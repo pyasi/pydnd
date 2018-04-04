@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Damage_Type(models.Model):
+class DamageType(models.Model):
     name = models.CharField(max_length=100, unique=True)
     desc = models.CharField(max_length=10000)
 

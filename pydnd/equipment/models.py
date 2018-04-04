@@ -1,5 +1,5 @@
 from django.db import models
-from pydnd.mechanics.models import Damage_Type
+from pydnd.mechanics.models import DamageType
 
 
 # Create your models here.
@@ -21,7 +21,7 @@ class Weapon(models.Model):
     range_type = models.CharField(max_length=100) #Range or Melee
     normal_range = models.IntegerField()
     long_range = models.IntegerField(null=True)
-    damage_type = models.ForeignKey(Damage_Type,on_delete=models.CASCADE)
+    damage_type = models.ForeignKey(DamageType, on_delete=models.CASCADE)
     weight = models.IntegerField()
     properties = models.ManyToManyField(WeaponProperty, null = True)
     damage_die_count = models.IntegerField()
