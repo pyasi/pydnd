@@ -3,12 +3,20 @@ from django.shortcuts import render,get_object_or_404
 # Create your views here.
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import generics, status
 from .models import Language, Condition, DamageType
-from .serializers import LanguageSerializer, ConditionSerializer, DamageTypeSerializer
+from .serializers import LanguageListSerializer, ConditionListSerializer, DamageTypeListSerializer
 
 
-class LanguageList(APIView):
-    def get(self, request):
-        language = Language.objects.all()
-        data = LanguageSerializer(armor, many=True).data
-        return Response(data)
+class LanguageList(generics.ListCreateAPIView):
+    queryset =  Language.objects.all()
+    serializer_class =  LanguageListSerializer
+
+class ConditionList(generics.ListCreateAPIView):
+    queryset = Condition.objects.all()
+    serializer_class = ConditionListSerializer
+
+
+class DamageTypeList(generics.ListCreateAPIView):
+    queryset = DamageType.objects.all()
+    serializer_class = DamageTypeListSerializer

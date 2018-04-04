@@ -21,5 +21,5 @@ urlpatterns = [
     re_path(r'^', include('pydnd.monsters.urls')),
     re_path(r'^', include('pydnd.skills.urls')),
     re_path(r'^', include('pydnd.equipment.urls')),
-
+    re_path(r'^', include('pydnd.mechanics.urls')),
 ]
