@@ -1,6 +1,6 @@
 from django.db import models
 from pydnd.skills.models import SpecialAbility, Action, Reaction, LegendaryAction
-
+from pydnd.mechanics.models import Language, DamageType, Condition
 
 class Monster(models.Model):
 
@@ -15,7 +15,7 @@ class Monster(models.Model):
     hit_die = models.FloatField(null=True)
     speed = models.CharField(max_length=500)
     senses = models.CharField(null=True, max_length=1000, blank=True)
-    languages = models.CharField(null=True, max_length=500, blank=True)
+    languages = models.ManyToManyField(Language, null = True)
 
     # Attributes
     arcana = models.FloatField(null=True)
@@ -51,10 +51,10 @@ class Monster(models.Model):
     challenge_rating = models.FloatField(null=True)
 
     # Immunities, vulnerabilities
-    damage_vulnerabilities = models.CharField(null=True, max_length=1000, blank=True)
-    damage_resistances = models.CharField(null=True, max_length=1000, blank=True)
-    damage_immunities = models.CharField(null=True, max_length=1000, blank=True)
-    condition_immunities = models.CharField(null=True, max_length=1000, blank=True)
+    damage_vulnerabilities = models.ManyToManyField(DamageType, null=True, related_name="vulnerabilities")
+    damage_resistances = models.ManyToManyField(DamageType, null=True, related_name="resistances")
+    damage_immunities = models.ManyToManyField(DamageType, null=True, related_name="immunities")
+    condition_immunities = models.ManyToManyField(Condition, null=True)
 
     # ManyToMany Models
     special_abilities = models.ManyToManyField(SpecialAbility, null=True)
