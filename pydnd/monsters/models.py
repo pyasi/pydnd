@@ -51,9 +51,9 @@ class Monster(models.Model):
     challenge_rating = models.FloatField(null=True)
 
     # Immunities, vulnerabilities
-    damage_vulnerabilities = models.ManyToManyField(Damage_Type, null=True)
-    damage_resistances = models.ManyToManyField(Damage_Type, null=True)
-    damage_immunities = models.ManyToManyField(Damage_Type, null=True)
+    damage_vulnerabilities = models.ManyToManyField(Damage_Type, null=True, related_name="vulnerabilities")
+    damage_resistances = models.ManyToManyField(Damage_Type, null=True, related_name="resistances")
+    damage_immunities = models.ManyToManyField(Damage_Type, null=True, related_name="immunities")
     condition_immunities = models.ManyToManyField(Condition, null=True)
 
     # ManyToMany Models
