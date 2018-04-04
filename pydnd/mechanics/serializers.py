@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Language, Condition, DamageType
+from .models import Language, Condition, DamageType, MagicSchool
 
 
 class LanguageListSerializer(serializers.ModelSerializer):
@@ -15,6 +15,12 @@ class ConditionListSerializer(serializers.ModelSerializer):
         model = Condition
         fields = '__all__'
 
+
+class MagicSchoolListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MagicSchool
+        fields = '__all__'
 
 class DamageTypeListSerializer(serializers.ModelSerializer):
 
