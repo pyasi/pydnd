@@ -22,6 +22,8 @@ class Condition(models.Model):
 
 class Language(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    type = models.CharField(max_length=100)
+    typical_speakers = models.CharField(max_length=100)
     script = models.CharField(max_length=20)
 
     def __str__(self):
