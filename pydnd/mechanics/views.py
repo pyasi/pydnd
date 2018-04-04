@@ -7,3 +7,8 @@ from .models import Language, Condition, DamageType
 from .serializers import LanguageSerializer, ConditionSerializer, DamageTypeSerializer
 
 
+class LanguageList(APIView):
+    def get(self, request):
+        language = Language.objects.all()
+        data = LanguageSerializer(armor, many=True).data
+        return Response(data)
