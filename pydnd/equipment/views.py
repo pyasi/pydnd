@@ -18,6 +18,7 @@ class EquipmentList(APIView):
 
 
 class EquipmentCategoryList(generics.ListCreateAPIView):
+
     queryset = EquipmentCategory.objects.all()
     serializer_class =  EquipmentCategorySerializer
 
@@ -46,7 +47,11 @@ class EquipmentSubCategoryList(generics.ListCreateAPIView):
 
         data = request.data
 
-        equipment_category = create_attribute(data, 'equipment_category', EquipmentCategorySerializer, EquipmentCategory)
+        equipment_category_name = data.pop("equipment_category")
+
+        equipment_category_object = EquipmentCategory.objects.get(name=equipment_category_name)
+
+
 
         equipment_sub_category = EquipmentSubCategorySerializer(data=data)
 
@@ -55,7 +60,9 @@ class EquipmentSubCategoryList(generics.ListCreateAPIView):
         else:
             equipment_sub_object = get_object_or_404(EquipmentSubCategory, name=equipment_sub_category.initial_data['name'])
 
-        equipment_sub_object.equipment_category_set.add(equipment_category)
+        equipment_sub_object.equipment_category = equipment_category_object
+
+        equipment_sub_object.save()
 
         return Response(data, status=status.HTTP_200_OK)
 
@@ -80,12 +87,10 @@ class WeaponList(APIView):
 
 def create_attribute(data, attribute_name, serializer, model_type):
     monster_attributes = []
-    attributes = data.pop(attribute_name)
-    for attribute in attributes:
-        attribute_model = serializer(data=attribute)
-        if attribute.isdigit():
-            monster_attributes.append(get_object_or_404(model_type, id=int(attribute)))
-        else:
-            monster_attributes.append(get_object_or_404(model_type, name__iexact=attribute))
-
+    attribute = data[attribute_name]
+    attribute_model = serializer(data=attribute)
+    if attribute_model.is_valid():
+        monster_attributes.append(attribute_model.save())
+    else:
+        monster_attributes.append(get_object_or_404(model_type, name=attribute_name))
     return monster_attributes

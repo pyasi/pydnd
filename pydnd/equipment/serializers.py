@@ -54,3 +54,5 @@ class ArmorListSerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
+
+
