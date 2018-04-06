@@ -59,8 +59,6 @@ class MonsterList(generics.ListCreateAPIView):
         for legendary_action in legendary_actions:
             monster_object.legendary_actions.add(legendary_action)
 
-
-
         return Response(data, status=status.HTTP_200_OK)
 
     # TODO remove this
@@ -92,19 +90,20 @@ def get_attribute_by_name(data, attribute_name, model_type):
     monster_attributes = []
     try:
         attribute_names = data.pop(attribute_name)
-        for attribute_name in attribute_names:
+        for attribute in attribute_names:
             try:
-                attribute_model = model_type.objects.get(name__iexact=attribute_name)
+                attribute_model = model_type.objects.get(name__iexact=attribute)
                 monster_attributes.append(attribute_model)
             except ObjectDoesNotExist:
 
                 #TODO So many that we can't get due to wording.
-                print("Couldn't get: {}".format(attribute_name))
+                print("Couldn't get: {}".format(attribute))
+                with open('failures.txt', 'a') as file:
+                    file.write("Data: {}, Attribute {}, Issue: {}\n".format(data['index'], attribute_name, attribute))
     except KeyError:
         pass
 
     return monster_attributes
-
 
 
 class MonsterGet(APIView):
