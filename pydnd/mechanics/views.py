@@ -31,16 +31,12 @@ class LanguageGet(APIView):
     serializer_class = LanguageListSerializer
 
     def get(self, request, name_or_id):
-        return get_language(name_or_id)
 
-
-def get_language(name_or_id):
-
-    if name_or_id.isdigit():
-        queryset = Language.objects.get(id=int(name_or_id))
-    else:
-        queryset = Language.objects.get(name__iexact=name_or_id)
-    return Response(model_to_dict(queryset), status=status.HTTP_200_OK)
+        if name_or_id.isdigit():
+            queryset = Language.objects.get(id=int(name_or_id))
+        else:
+            queryset = Language.objects.get(name__iexact=name_or_id)
+        return Response(model_to_dict(queryset), status=status.HTTP_200_OK)
 
 
 class ConditionGet(APIView):
@@ -48,16 +44,12 @@ class ConditionGet(APIView):
     serializer_class = ConditionListSerializer
 
     def get(self, request, name_or_id):
-        return get_condition(name_or_id)
 
-
-def get_condition(name_or_id):
-
-    if name_or_id.isdigit():
-        queryset = Condition.objects.get(id=int(name_or_id))
-    else:
-        queryset = Condition.objects.get(name__iexact=name_or_id)
-    return Response(model_to_dict(queryset), status=status.HTTP_200_OK)
+        if name_or_id.isdigit():
+            queryset = Condition.objects.get(id=int(name_or_id))
+        else:
+            queryset = Condition.objects.get(name__iexact=name_or_id)
+        return Response(model_to_dict(queryset), status=status.HTTP_200_OK)
 
 
 class DamageTypeGet(APIView):

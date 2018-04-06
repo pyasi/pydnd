@@ -28,16 +28,14 @@ class EquipmentCategoryGet(APIView):
     serializer_class = EquipmentCategorySerializer
 
     def get(self, request, name_or_id):
-        return get_equipment_category(name_or_id)
+        if name_or_id.isdigit():
+            queryset = EquipmentCategory.objects.get(id=int(name_or_id))
+        else:
+            queryset = EquipmentCategory.objects.get(name__iexact=name_or_id)
+        return Response(model_to_dict(queryset), status=status.HTTP_200_OK)
 
 
-def get_equipment_category(name_or_id):
 
-    if name_or_id.isdigit():
-        queryset = EquipmentCategory.objects.get(id=int(name_or_id))
-    else:
-        queryset = EquipmentCategory.objects.get(name__iexact=name_or_id)
-    return Response(model_to_dict(queryset), status=status.HTTP_200_OK)
 
 
 
