@@ -13,6 +13,7 @@ class LanguageList(generics.ListCreateAPIView):
     queryset =  Language.objects.all()
     serializer_class =  LanguageListSerializer
 
+
 class ConditionList(generics.ListCreateAPIView):
     queryset = Condition.objects.all()
     serializer_class = ConditionListSerializer
