@@ -11,14 +11,25 @@ class EquipmentCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = EquipmentCategory
-        fields = '__all__'
+        fields = ('id', 'name')
 
 
 class EquipmentSubCategorySerializer(serializers.ModelSerializer):
 
+    equipment_category = EquipmentCategorySerializer(read_only=True)
+
     class Meta:
         model = EquipmentSubCategory
-        fields = '__all__'
+        fields = ('id','name','equipment_category')
+
+class EquipmentSubCategoryLstSerializer(serializers.ModelSerializer):
+
+
+    class Meta:
+        model = EquipmentSubCategory
+        fields = ('id','name','equipment_category')
+
+
 
 
 class WeaponSerializer(serializers.ModelSerializer):

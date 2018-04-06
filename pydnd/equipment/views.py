@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Equipment, Armor, Weapon, EquipmentSubCategory, EquipmentCategory
-from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer
+from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer,EquipmentSubCategoryLstSerializer
 
 
 class EquipmentList(APIView):
@@ -33,6 +33,33 @@ class EquipmentCategoryGet(APIView):
         else:
             queryset = EquipmentCategory.objects.get(name__iexact=name_or_id)
         return Response(model_to_dict(queryset), status=status.HTTP_200_OK)
+
+class EquipmentSubCategoryGet(APIView):
+
+
+
+    def get(self, request, name_or_id):
+
+        if name_or_id.isdigit():
+            queryset = EquipmentSubCategory.objects.get(id=int(name_or_id))
+        else:
+            queryset = EquipmentSubCategory.objects.get(name__iexact=name_or_id)
+
+        equipment_category = EquipmentCategory.objects.get(id=int(queryset.equipment_category.id))
+
+        queryset_dict = {}
+        queryset_dict["id"]=queryset.id
+        queryset_dict["name"]=queryset.name
+        queryset_dict["desc"]=queryset.desc
+
+        equipment_category_dict = {}
+        equipment_category_dict["id"]=equipment_category.id
+        equipment_category_dict["name"]=equipment_category.name
+
+        queryset_dict["equipment_category"] = equipment_category_dict
+
+        return Response(queryset_dict, status=status.HTTP_200_OK)
+
 
 
 class EquipmentSubCategoryList(generics.ListCreateAPIView):
