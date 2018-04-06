@@ -10,14 +10,15 @@ from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponLis
 
 
 class EquipmentList(APIView):
+
    def get(self, request):
         equipment = Equipment.objects.all()
         data = EquipmentListSerializer(equipment, many=True).data
         return Response(data)
 
 
-
 class EquipmentCategoryList(generics.ListCreateAPIView):
+
     queryset = EquipmentCategory.objects.all()
     serializer_class =  EquipmentCategorySerializer
 
@@ -27,17 +28,11 @@ class EquipmentCategoryGet(APIView):
     serializer_class = EquipmentCategorySerializer
 
     def get(self, request, name_or_id):
-        return get_equipment_category(name_or_id)
-
-
-def get_equipment_category(name_or_id):
-
-    if name_or_id.isdigit():
-        queryset = EquipmentCategory.objects.get(id=int(name_or_id))
-    else:
-        queryset = EquipmentCategory.objects.get(name__iexact=name_or_id)
-    return Response(model_to_dict(queryset), status=status.HTTP_200_OK)
-
+        if name_or_id.isdigit():
+            queryset = EquipmentCategory.objects.get(id=int(name_or_id))
+        else:
+            queryset = EquipmentCategory.objects.get(name__iexact=name_or_id)
+        return Response(model_to_dict(queryset), status=status.HTTP_200_OK)
 
 
 class EquipmentSubCategoryList(generics.ListCreateAPIView):
@@ -46,7 +41,9 @@ class EquipmentSubCategoryList(generics.ListCreateAPIView):
 
         data = request.data
 
-        equipment_category = create_attribute(data, 'equipment_category', EquipmentCategorySerializer, EquipmentCategory)
+        equipment_category_name = data.pop("equipment_category")
+
+        equipment_category_object = EquipmentCategory.objects.get(name=equipment_category_name)
 
         equipment_sub_category = EquipmentSubCategorySerializer(data=data)
 
@@ -55,7 +52,9 @@ class EquipmentSubCategoryList(generics.ListCreateAPIView):
         else:
             equipment_sub_object = get_object_or_404(EquipmentSubCategory, name=equipment_sub_category.initial_data['name'])
 
-        equipment_sub_object.equipment_category_set.add(equipment_category)
+        equipment_sub_object.equipment_category = equipment_category_object
+
+        equipment_sub_object.save()
 
         return Response(data, status=status.HTTP_200_OK)
 
@@ -64,6 +63,7 @@ class EquipmentSubCategoryList(generics.ListCreateAPIView):
 
 
 class ArmorList(APIView):
+
     def get(self, request):
         armor = Armor.objects.all()
         data = ArmorListSerializer(armor, many=True).data
@@ -71,21 +71,8 @@ class ArmorList(APIView):
 
 
 class WeaponList(APIView):
+
     def get(self, request):
         weapon = Weapon.objects.all()
         data = WeaponListSerializer(weapon, many=True).data
         return Response(data)
-
-
-
-def create_attribute(data, attribute_name, serializer, model_type):
-    monster_attributes = []
-    attributes = data.pop(attribute_name)
-    for attribute in attributes:
-        attribute_model = serializer(data=attribute)
-        if attribute.isdigit():
-            monster_attributes.append(get_object_or_404(model_type, id=int(attribute)))
-        else:
-            monster_attributes.append(get_object_or_404(model_type, name__iexact=attribute))
-
-    return monster_attributes

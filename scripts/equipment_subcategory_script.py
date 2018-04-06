@@ -11,7 +11,7 @@ body = response.json()
 count = body['count']
 body2 = {}
 
-for i in range(51, 52):
+for i in range(51, count):
     try:
         response = requests.get(dndurl + endpoint + str(i))
         if response.ok:
@@ -21,7 +21,7 @@ for i in range(51, 52):
             body2["desc"]=body[keys[4]]
             body2["equipment_category"]=body[keys[3]]
 
-            request = requests.post(url + endpoint2, json=body)
+            request = requests.post(url + endpoint2, json=body2)
         print("{}\n".format(i))
     except Exception as e:
         print("Error on: {}".format(i))
