@@ -59,7 +59,7 @@ class EquipmentSubCategoryGet(APIView):
 
         return Response(queryset_dict, status=status.HTTP_200_OK)
 
-
+#TODO Remove Post
 class EquipmentSubCategoryList(generics.ListCreateAPIView):
 
     def post(self, request, *args, **kwargs):
@@ -86,7 +86,7 @@ class EquipmentSubCategoryList(generics.ListCreateAPIView):
     queryset = EquipmentSubCategory.objects.all()
     serializer_class = EquipmentSubCategorySerializer
 
-
+#TODO Remove Post
 class EquipmentList(generics.ListCreateAPIView):
 
     def post(self, request, *args, **kwargs):
@@ -131,8 +131,17 @@ class EquipmentGet(APIView):
         queryset_dict["name"]=queryset.name
         queryset_dict["cost_quantity"]=queryset.cost_quantity
         queryset_dict["cost_denom"]=queryset.cost_denom
-        queryset_dict["equipment_subcategory"]=equipment_subcategory.name
-        queryset_dict["equipment_category"]=equipment_category.name
+
+        equipment_subcategory_dict ={}
+        equipment_subcategory_dict["id"] = equipment_subcategory.id
+        equipment_subcategory_dict["name"] = equipment_subcategory.name
+
+        equipment_category_dict = {}
+        equipment_category_dict["id"]=equipment_category.id
+        equipment_category_dict["name"]=equipment_category.name
+
+        queryset_dict["equipment_subcategory"]=equipment_subcategory_dict
+        queryset_dict["equipment_category"]=equipment_category_dict
 
         return Response(queryset_dict, status=status.HTTP_200_OK)
 
