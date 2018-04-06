@@ -10,21 +10,28 @@ from .serializers import LanguageListSerializer, ConditionListSerializer, Damage
 
 
 class LanguageList(generics.ListCreateAPIView):
+
     queryset =  Language.objects.all()
     serializer_class =  LanguageListSerializer
 
+
 class ConditionList(generics.ListCreateAPIView):
+
     queryset = Condition.objects.all()
     serializer_class = ConditionListSerializer
 
 
 class DamageTypeList(generics.ListCreateAPIView):
+
     queryset = DamageType.objects.all()
     serializer_class = DamageTypeListSerializer
 
+
 class MagicSchoolList(generics.ListCreateAPIView):
+
     queryset = MagicSchool.objects.all()
     serializer_class = MagicSchoolListSerializer
+
 
 class LanguageGet(APIView):
 
@@ -80,9 +87,3 @@ class MagicSchoolGet(APIView):
             queryset = MagicSchool.objects.get(name__iexact=name_or_id)
 
         return Response(model_to_dict(queryset), status=status.HTTP_200_OK)
-
-
-
-
-
-
