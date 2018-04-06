@@ -93,10 +93,13 @@ def get_attribute_by_name(data, attribute_name, model_type):
     try:
         attribute_names = data.pop(attribute_name)
         for attribute_name in attribute_names:
-            print(attribute_name)
-            attribute_model = model_type.objects.get(name=attribute_name)
+            try:
+                attribute_model = model_type.objects.get(name__iexact=attribute_name)
+                monster_attributes.append(attribute_model)
+            except ObjectDoesNotExist:
 
-            monster_attributes.append(get_object_or_404(model_type, name=attribute_name))
+                #TODO So many that we can't get due to wording.
+                print("Couldn't get: {}".format(attribute_name))
     except KeyError:
         pass
 
@@ -166,6 +169,18 @@ def respond_to_monster_request(name_or_id, attribute=None):
 
         languages = get_monster_attribute(model, 'languages')
         model['languages'] = languages
+
+        damage_vulnerabilities = get_monster_attribute(model, 'damage_vulnerabilities')
+        model['damage_vulnerabilities'] = damage_vulnerabilities
+
+        damage_resistances = get_monster_attribute(model, 'damage_resistances')
+        model['damage_resistances'] = damage_resistances
+
+        damage_immunities = get_monster_attribute(model, 'damage_immunities')
+        model['damage_immunities'] = damage_immunities
+
+        condition_immunities = get_monster_attribute(model, 'condition_immunities')
+        model['condition_immunities'] = condition_immunities
 
         if attribute:
             return Response(model[attribute], status=status.HTTP_200_OK)

@@ -3,17 +3,17 @@ import json
 
 url = "http://127.0.0.1:8000/"
 
+mechanics = ['languages', 'damage_vulnerabilities', 'damage_resistances', 'damage_immunities', 'condition_immunities']
+
 failures = []
 
 with open('scripts/monsters.json', 'r') as file:
     datastore = json.load(file)
     for obj in datastore:
         try:
-            obj['languages'] = obj['languages'].split(', ')
-            obj['damage_vulnerabilities'] = obj['damage_vulnerabilities'].split(', ')
-            obj['damage_resistances'] = obj['damage_resistances'].split(', ')
-            obj['damage_immunities'] = obj['damage_immunities'].split(', ')
-            obj['condition_immunities'] = obj['condition_immunities'].split(', ')
+            for mechanic in mechanics:
+                if len(obj[mechanic]) > 1:
+                    obj[mechanic] = obj[mechanic].split(', ')
             response = requests.post(url + "monsters/", json=obj)
             if response.status_code == 500:
                 print(response)
