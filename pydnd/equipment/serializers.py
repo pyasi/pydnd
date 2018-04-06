@@ -7,6 +7,14 @@ class EquipmentSerializer(serializers.ModelSerializer):
         model = Equipment
         fields = '__all__'
 
+
+class EquipmentListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Equipment
+        fields = ('id','name')
+
+
 class EquipmentCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
