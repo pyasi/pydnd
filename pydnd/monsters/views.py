@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from .models import Monster, Action, SpecialAbility, Reaction, LegendaryAction
 from .serializers import MonsterSerializer, MonsterListSerializer
 from pydnd.skills.serializers import SpecialAbilitySerializer, ActionSerializer, ReactionSerializer, LegendaryActionSerializer
+from pydnd.mechanics.models import Language, Condition, DamageType
 
 
 # TODO Remove Post ability - Admin required?
@@ -19,6 +20,14 @@ class MonsterList(generics.ListCreateAPIView):
 
         data = request.data
 
+        # Existing attributes
+        languages = get_attribute_by_name(data, 'languages', Language)
+        damage_vulnerabilities = get_attribute_by_name(data, 'damage_vulnerabilities', DamageType)
+        damage_resistances = get_attribute_by_name(data, 'damage_resistances', DamageType)
+        damage_immunities = get_attribute_by_name(data, 'damage_immunities', DamageType)
+        condition_immunities = get_attribute_by_name(data, 'condition_immunities', Condition)
+
+        # Created attributes
         abilities = create_attribute(data, 'special_abilities', SpecialAbilitySerializer, SpecialAbility)
         reactions = create_attribute(data, 'reactions', ReactionSerializer, Reaction)
         legendary_actions = create_attribute(data, 'legendary_actions', LegendaryActionSerializer, LegendaryAction)
@@ -29,6 +38,18 @@ class MonsterList(generics.ListCreateAPIView):
             monster_object = monster.save()
         else:
             monster_object = get_object_or_404(Monster, name=monster.initial_data['name'])
+
+        for language in languages:
+            monster_object.languages.add(language)
+        for damage_vulnerability in damage_vulnerabilities:
+            monster_object.damage_vulnerabilities.add(damage_vulnerability)
+        for damage_immunity in damage_immunities:
+            monster_object.damage_immunities.add(damage_immunity)
+        for damage_resistance in damage_resistances:
+            monster_object.damage_resistances.add(damage_resistance)
+        for condition_immunity in condition_immunities:
+            monster_object.condition_immunities.add(condition_immunity)
+
         for ability in abilities:
             monster_object.special_abilities.add(ability)
         for action in actions:
@@ -59,6 +80,26 @@ def create_attribute(data, attribute_name, serializer, model_type):
                 monster_attributes.append(attribute_model.save())
             else:
                 monster_attributes.append(get_object_or_404(model_type, name=attribute_model.initial_data['name']))
+    except KeyError:
+        pass
+
+    return monster_attributes
+
+
+def get_attribute_by_name(data, attribute_name, model_type):
+    monster_attributes = []
+    try:
+        attribute_names = data.pop(attribute_name)
+        for attribute in attribute_names:
+            try:
+                attribute_model = model_type.objects.get(name__iexact=attribute)
+                monster_attributes.append(attribute_model)
+            except ObjectDoesNotExist:
+
+                #TODO So many that we can't get due to wording.
+                print("Couldn't get: {}".format(attribute))
+                with open('failures.txt', 'a') as file:
+                    file.write("Data: {}, Attribute {}, Issue: {}\n".format(data['index'], attribute_name, attribute))
     except KeyError:
         pass
 
@@ -124,6 +165,21 @@ def respond_to_monster_request(name_or_id, attribute=None):
 
         legendary_actions = get_monster_attribute(model, 'legendary_actions')
         model['legendary_actions'] = legendary_actions
+
+        languages = get_monster_attribute(model, 'languages')
+        model['languages'] = languages
+
+        damage_vulnerabilities = get_monster_attribute(model, 'damage_vulnerabilities')
+        model['damage_vulnerabilities'] = damage_vulnerabilities
+
+        damage_resistances = get_monster_attribute(model, 'damage_resistances')
+        model['damage_resistances'] = damage_resistances
+
+        damage_immunities = get_monster_attribute(model, 'damage_immunities')
+        model['damage_immunities'] = damage_immunities
+
+        condition_immunities = get_monster_attribute(model, 'condition_immunities')
+        model['condition_immunities'] = condition_immunities
 
         if attribute:
             return Response(model[attribute], status=status.HTTP_200_OK)
