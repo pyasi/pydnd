@@ -83,7 +83,7 @@ def create_attribute(data, attribute_name, serializer, model_type):
             if attribute_model.is_valid():
                 monster_attributes.append(attribute_model.save())
             else:
-                monster_attributes.append(get_object_or_404(model_type, name=attribute_model.initial_data['name']))
+                monster_attributes.append(get_object_or_404(model_type, desc=attribute_model.initial_data['desc']))
     except KeyError:
         pass
 
@@ -103,7 +103,7 @@ def get_attribute_by_name(data, attribute_name, model_type):
                 #TODO So many that we can't get due to wording.
                 print("Couldn't get: {}".format(attribute))
                 with open('failures.txt', 'a') as file:
-                    file.write("Data: {}, Attribute {}, Issue: {}\n".format(data['index'], attribute_name, attribute))
+                    #file.write("Data: {}, Attribute {}, Issue: {}\n".format(data['index'], attribute_name, attribute))
     except KeyError:
         pass
 
