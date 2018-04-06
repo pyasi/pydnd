@@ -64,7 +64,7 @@ class DamageTypeGet(APIView):
             queryset = DamageType.objects.get(id=int(name_or_id))
         else:
             queryset = DamageType.objects.get(name__iexact=name_or_id)
-            
+
         return Response(model_to_dict(queryset), status=status.HTTP_200_OK)
 
 
@@ -78,6 +78,7 @@ class MagicSchoolGet(APIView):
             queryset = MagicSchool.objects.get(id=int(name_or_id))
         else:
             queryset = MagicSchool.objects.get(name__iexact=name_or_id)
+
         return Response(model_to_dict(queryset), status=status.HTTP_200_OK)
 
 
