@@ -1,5 +1,6 @@
 from django.shortcuts import render,get_object_or_404
 from rest_framework import generics, status
+from django.http import Http404
 # Create your views here.
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -40,20 +41,36 @@ class EquipmentSubCategoryGet(APIView):
     def get(self, request, name_or_id):
 
         if name_or_id.isdigit():
-            queryset = EquipmentSubCategory.objects.get(id=int(name_or_id))
+            try:
+                queryset = EquipmentSubCategory.objects.get(id=int(name_or_id))
+            except KeyError:
+                raise Http404
         else:
-            queryset = EquipmentSubCategory.objects.get(name__iexact=name_or_id)
+            try:
+                queryset = EquipmentSubCategory.objects.get(name__iexact=name_or_id)
+            except KeyError:
+                raise Http404
 
-        equipment_category = EquipmentCategory.objects.get(id=int(queryset.equipment_category.id))
+        try:
+            equipment_category = EquipmentCategory.objects.get(id=int(queryset.equipment_category.id))
+        except KeyError:
+            raise Http404
 
-        queryset_dict = {}
-        queryset_dict["id"]=queryset.id
-        queryset_dict["name"]=queryset.name
-        queryset_dict["desc"]=queryset.desc
+        try:
+            queryset_dict = {}
+            queryset_dict["id"]=queryset.id
+            queryset_dict["name"]=queryset.name
+            queryset_dict["desc"]=queryset.desc
+        except KeyError:
+            raise Http404
+        
+        try:
+            equipment_category_dict = {}
+            equipment_category_dict["id"]=equipment_category.id
+            equipment_category_dict["name"]=equipment_category.name
+        except KeyError:
+            raise Http404
 
-        equipment_category_dict = {}
-        equipment_category_dict["id"]=equipment_category.id
-        equipment_category_dict["name"]=equipment_category.name
 
         queryset_dict["equipment_category"] = equipment_category_dict
 
@@ -119,26 +136,47 @@ class EquipmentGet(APIView):
     def get(self, request, name_or_id):
 
         if name_or_id.isdigit():
-            queryset = Equipment.objects.get(id=int(name_or_id))
+            try:
+                queryset = Equipment.objects.get(id=int(name_or_id))
+            except KeyError:
+                raise Http404
         else:
-            queryset = Equipment.objects.get(name__iexact=name_or_id)
+            try:
+                queryset = Equipment.objects.get(name__iexact=name_or_id)
+            except KeyError:
+                raise Http404
+        try:
+            equipment_subcategory = EquipmentSubCategory.objects.get(id=int(queryset.equipment_category.id))
+        except KeyError:
+            raise Http404
 
-        equipment_subcategory = EquipmentSubCategory.objects.get(id=int(queryset.equipment_category.id))
-        equipment_category = EquipmentCategory.objects.get(id=int(equipment_subcategory.equipment_category.id))
+        try:
+            equipment_category = EquipmentCategory.objects.get(id=int(equipment_subcategory.equipment_category.id))
+        except KeyError:
+            raise Http404
 
         queryset_dict = {}
-        queryset_dict["id"]=queryset.id
-        queryset_dict["name"]=queryset.name
-        queryset_dict["cost_quantity"]=queryset.cost_quantity
-        queryset_dict["cost_denom"]=queryset.cost_denom
+        try:
+            queryset_dict["id"]=queryset.id
+            queryset_dict["name"]=queryset.name
+            queryset_dict["cost_quantity"]=queryset.cost_quantity
+            queryset_dict["cost_denom"]=queryset.cost_denom
+        except KeyError:
+            raise Http404
 
-        equipment_subcategory_dict ={}
-        equipment_subcategory_dict["id"] = equipment_subcategory.id
-        equipment_subcategory_dict["name"] = equipment_subcategory.name
+        try:
+            equipment_subcategory_dict ={}
+            equipment_subcategory_dict["id"] = equipment_subcategory.id
+            equipment_subcategory_dict["name"] = equipment_subcategory.name
+        except KeyError:
+            raise Http404
 
-        equipment_category_dict = {}
-        equipment_category_dict["id"]=equipment_category.id
-        equipment_category_dict["name"]=equipment_category.name
+        try:
+            equipment_category_dict = {}
+            equipment_category_dict["id"]=equipment_category.id
+            equipment_category_dict["name"]=equipment_category.name
+        except KeyError:
+            raise Http404
 
         queryset_dict["equipment_subcategory"]=equipment_subcategory_dict
         queryset_dict["equipment_category"]=equipment_category_dict
