@@ -1,0 +1,500 @@
+Data: 1, Attribute languages, Issue: telepathy 120 ft.
+Data: 2, Attribute languages, Issue: any one language (usually Common)
+Data: 14, Attribute languages, Issue: Auran
+Data: 14, Attribute damage_resistances, Issue: lightning; thunder; bludgeoning
+Data: 14, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 14, Attribute condition_immunities, Issue: unconscious
+Data: 25, Attribute languages, Issue: Sphinx
+Data: 25, Attribute damage_immunities, Issue: psychic; bludgeoning
+Data: 25, Attribute damage_immunities, Issue: and slashing from nonmagical weapons
+Data: 29, Attribute languages, Issue: any six languages
+Data: 29, Attribute damage_resistances, Issue: damage from spells; non magical bludgeoning
+Data: 29, Attribute damage_resistances, Issue: and slashing (from stoneskin)
+Data: 30, Attribute languages, Issue: Thieves' cant plus any two languages
+Data: 31, Attribute languages, Issue: one language known by its creator
+Data: 32, Attribute languages, Issue: one language known by its creator
+Data: 34, Attribute languages, Issue: Ignan
+Data: 37, Attribute languages, Issue: telepathy 120 ft.
+Data: 37, Attribute damage_resistances, Issue: lightning; bludgeoning
+Data: 37, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 38, Attribute languages, Issue: any one language (usually Common)
+Data: 39, Attribute languages, Issue: any two languages
+Data: 40, Attribute languages, Issue: telepathy 120 ft.
+Data: 40, Attribute damage_resistances, Issue: cold; bludgeoning
+Data: 40, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 43, Attribute languages, Issue: telepathy 120 ft.
+Data: 43, Attribute damage_resistances, Issue: cold; bludgeoning
+Data: 43, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 45, Attribute languages, Issue: any one language (usually Common)
+Data: 49, Attribute languages, Issue: Blink Dog
+Data: 49, Attribute languages, Issue: understands Sylvan but can't speak it
+Data: 53, Attribute languages, Issue: telepathy 120 ft.
+Data: 53, Attribute damage_resistances, Issue: cold; bludgeoning
+Data: 53, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 64, Attribute languages, Issue: telepathy 120 ft.
+Data: 64, Attribute damage_resistances, Issue: cold; bludgeoning
+Data: 64, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 65, Attribute languages, Issue: understands Draconic but can't speak
+Data: 66, Attribute languages, Issue: understands Deep Speech but can't speak
+Data: 67, Attribute languages, Issue: understands the languages of its creator but can't speak
+Data: 67, Attribute damage_immunities, Issue: psychic; bludgeoning
+Data: 67, Attribute damage_immunities, Issue: and slashing from nonmagical weapons that aren't adamantine
+Data: 68, Attribute languages, Issue: Undercommon
+Data: 71, Attribute languages, Issue: any one language (usually Common)
+Data: 74, Attribute languages, Issue: all
+Data: 74, Attribute languages, Issue: telepathy 120 ft.
+Data: 74, Attribute damage_immunities, Issue: psychic; bludgeoning
+Data: 74, Attribute damage_immunities, Issue: and slashing from nonmagical weapons
+Data: 77, Attribute languages, Issue: any one language (usually Common)
+Data: 78, Attribute languages, Issue: any one language (usually Common)
+Data: 81, Attribute languages, Issue: Terran
+Data: 81, Attribute languages, Issue: Undercommon
+Data: 83, Attribute languages, Issue: all
+Data: 83, Attribute languages, Issue: telepathy 120 ft.
+Data: 83, Attribute damage_resistances, Issue: radiant; bludgeoning
+Data: 83, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 85, Attribute languages, Issue: Auran
+Data: 85, Attribute damage_immunities, Issue: thunder
+Data: 86, Attribute damage_immunities, Issue: charmed
+Data: 88, Attribute languages, Issue: Aquan
+Data: 89, Attribute languages, Issue: telepathy 60 ft. (works only with creatures that understand Abyssal)
+Data: 90, Attribute languages, Issue: Undercommon
+Data: 91, Attribute languages, Issue: Undercommon
+Data: 92, Attribute languages, Issue: Druidic plus any two languages
+Data: 94, Attribute languages, Issue: Undercommon
+Data: 95, Attribute languages, Issue: Auran
+Data: 95, Attribute languages, Issue: Terran
+Data: 97, Attribute languages, Issue: Terran
+Data: 97, Attribute damage_vulnerabilities, Issue: thunder
+Data: 97, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 97, Attribute condition_immunities, Issue: unconscious
+Data: 98, Attribute languages, Issue: Ignan
+Data: 101, Attribute languages, Issue: telepathy 120 ft.
+Data: 101, Attribute damage_resistances, Issue: cold; bludgeoning
+Data: 101, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 104, Attribute languages, Issue: Ignan
+Data: 104, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 104, Attribute condition_immunities, Issue: unconscious
+Data: 106, Attribute languages, Issue: understands the languages of its creator but can't speak
+Data: 106, Attribute damage_immunities, Issue: poison; bludgeoning
+Data: 106, Attribute damage_immunities, Issue: and slashing from nonmagical weapons that aren't adamantine
+Data: 111, Attribute languages, Issue: Terran
+Data: 111, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't adamantine
+Data: 114, Attribute languages, Issue: any languages it knew in life
+Data: 114, Attribute damage_resistances, Issue: thunder; bludgeoning
+Data: 114, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 124, Attribute languages, Issue: Giant Eagle
+Data: 124, Attribute languages, Issue: understands Common and Auran but can't speak
+Data: 125, Attribute languages, Issue: Giant Elk
+Data: 125, Attribute languages, Issue: understands Common
+Data: 125, Attribute languages, Issue: and Sylvan but can't speak
+Data: 132, Attribute languages, Issue: Giant Owl
+Data: 132, Attribute languages, Issue: understands Common
+Data: 132, Attribute languages, Issue: and Sylvan but can't speak
+Data: 141, Attribute languages, Issue: understands Common but can't speak
+Data: 146, Attribute languages, Issue: telepathy 120 ft.
+Data: 146, Attribute damage_resistances, Issue: lightning; bludgeoning
+Data: 146, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 147, Attribute languages, Issue: any one language (usually Common)
+Data: 148, Attribute languages, Issue: Gnoll
+Data: 152, Attribute damage_immunities, Issue: petrified
+Data: 156, Attribute damage_resistances, Issue: and slashing damage from nonmagical weapons
+Data: 158, Attribute languages, Issue: Undercommon
+Data: 158, Attribute damage_immunities, Issue: blinded
+Data: 159, Attribute languages, Issue: any one language (usually Common)
+Data: 161, Attribute languages, Issue: Sphinx
+Data: 161, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 165, Attribute languages, Issue: understands Infernal but can't speak it
+Data: 166, Attribute languages, Issue: telepathy 120 ft.
+Data: 166, Attribute damage_resistances, Issue: lightning; bludgeoning
+Data: 166, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 170, Attribute languages, Issue: understands the languages of its creator but can't speak
+Data: 171, Attribute languages, Issue: telepathy 120 ft.
+Data: 171, Attribute damage_resistances, Issue: cold; bludgeoning
+Data: 171, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 175, Attribute languages, Issue: telepathy 120 ft.
+Data: 175, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 176, Attribute languages, Issue: Aquan
+Data: 176, Attribute languages, Issue: Auran
+Data: 177, Attribute damage_resistances, Issue: cold; bludgeoning
+Data: 177, Attribute damage_resistances, Issue: and slashing from nonmagical/nonsilver weapons
+Data: 178, Attribute languages, Issue: Auran
+Data: 178, Attribute languages, Issue: understands Common but doesn't speak it
+Data: 178, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 178, Attribute condition_immunities, Issue: unconscious
+Data: 179, Attribute languages, Issue: understands the languages of its creator but can't speak
+Data: 179, Attribute damage_immunities, Issue: psychic; bludgeoning
+Data: 179, Attribute damage_immunities, Issue: and slashing from nonmagical weapons that aren't adamantine
+Data: 182, Attribute languages, Issue: any one language (usually Common)
+Data: 184, Attribute languages, Issue: understands Abyssal
+Data: 184, Attribute languages, Issue: and Primordial but can't speak
+Data: 184, Attribute languages, Issue: telepathy 120 ft.
+Data: 184, Attribute damage_immunities, Issue: lightning; bludgeoning
+Data: 184, Attribute damage_immunities, Issue: and slashing from nonmagical weapons
+Data: 186, Attribute languages, Issue: understands infernal but can't speak
+Data: 187, Attribute languages, Issue: Common plus up to five other languages
+Data: 187, Attribute damage_immunities, Issue: poison; bludgeoning
+Data: 187, Attribute damage_immunities, Issue: and slashing from nonmagical weapons
+Data: 191, Attribute languages, Issue: any four languages
+Data: 192, Attribute languages, Issue: Ignan
+Data: 192, Attribute languages, Issue: Terran
+Data: 193, Attribute languages, Issue: Ignan
+Data: 193, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 196, Attribute languages, Issue: telepathy 120 ft.
+Data: 196, Attribute damage_resistances, Issue: lightning; bludgeoning
+Data: 196, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 199, Attribute languages, Issue: Aquan
+Data: 200, Attribute languages, Issue: Aquan
+Data: 203, Attribute languages, Issue: understands Abyssal but can't speak
+Data: 205, Attribute languages, Issue: the languages it knew in life
+Data: 205, Attribute damage_immunities, Issue: and slashing from nonmagical weapons
+Data: 205, Attribute condition_immunities, Issue: necrotic
+Data: 206, Attribute languages, Issue: the languages it knew in life
+Data: 206, Attribute damage_immunities, Issue: poison; bludgeoning
+Data: 206, Attribute damage_immunities, Issue: and slashing from nonmagical weapons
+Data: 207, Attribute languages, Issue: telepathy 120 ft.
+Data: 207, Attribute damage_resistances, Issue: lightning; bludgeoning
+Data: 207, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 208, Attribute damage_resistances, Issue: fire; bludgeoning
+Data: 208, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 209, Attribute languages, Issue: understands Abyssal
+Data: 209, Attribute languages, Issue: and Infernal but can't speak
+Data: 210, Attribute languages, Issue: any two languages
+Data: 214, Attribute languages, Issue: understands Common and Giant but can't speak
+Data: 217, Attribute languages, Issue: Otyugh
+Data: 221, Attribute languages, Issue: understands Celestial
+Data: 221, Attribute languages, Issue: and Sylvan but can't speak
+Data: 223, Attribute languages, Issue: telepathy 120 ft.
+Data: 223, Attribute damage_resistances, Issue: cold; bludgeoning
+Data: 223, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 224, Attribute languages, Issue: all
+Data: 224, Attribute languages, Issue: telepathy 120 ft.
+Data: 224, Attribute damage_resistances, Issue: radiant; bludgeoning
+Data: 224, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 229, Attribute languages, Issue: any two languages
+Data: 230, Attribute languages, Issue: understands Common and Draconic but can't speak
+Data: 232, Attribute damage_resistances, Issue: cold; fire; lightning; bludgeoning
+Data: 232, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 234, Attribute damage_vulnerabilities, Issue: piercing from magic weapons wielded by good creatures
+Data: 234, Attribute damage_immunities, Issue: and slashing from nonmagical weapons
+Data: 247, Attribute languages, Issue: Sahuagin
+Data: 248, Attribute languages, Issue: Ignan
+Data: 248, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 251, Attribute languages, Issue: any one language (usually Common)
+Data: 252, Attribute languages, Issue: Aquan
+Data: 254, Attribute damage_resistances, Issue: thunder; bludgeoning
+Data: 254, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 256, Attribute languages, Issue: understands commands given in any language but can't speak
+Data: 259, Attribute languages, Issue: understands all languages it spoke in life but can't speak
+Data: 260, Attribute languages, Issue: all
+Data: 260, Attribute languages, Issue: telepathy 120 ft.
+Data: 260, Attribute damage_resistances, Issue: radiant; bludgeoning
+Data: 260, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 261, Attribute languages, Issue: understands all languages it knew in life but can't speak
+Data: 261, Attribute damage_resistances, Issue: thunder; bludgeoning
+Data: 261, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 261, Attribute condition_immunities, Issue: unconscious
+Data: 265, Attribute languages, Issue: any two languages
+Data: 266, Attribute languages, Issue: Aquan
+Data: 266, Attribute languages, Issue: Ignan
+Data: 269, Attribute languages, Issue: understands the languages of its creator but can't speak
+Data: 269, Attribute damage_immunities, Issue: psychic; bludgeoning
+Data: 269, Attribute damage_immunities, Issue: and slashing from nonmagical weapons that aren't adamantine
+Data: 270, Attribute damage_immunities, Issue: thunder
+Data: 271, Attribute languages, Issue: telepathy 60 ft.
+Data: 271, Attribute damage_resistances, Issue: poison; bludgeoning
+Data: 271, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 282, Attribute damage_immunities, Issue: poison; bludgeoning
+Data: 282, Attribute damage_immunities, Issue: and slashing from nonmagical weapons
+Data: 283, Attribute languages, Issue: any one language (usually Common)
+Data: 285, Attribute languages, Issue: Druidic
+Data: 286, Attribute languages, Issue: any one language
+Data: 290, Attribute languages, Issue: telepathy 60 ft.
+Data: 291, Attribute languages, Issue: the languages it knew in life
+Data: 291, Attribute damage_resistances, Issue: necrotic; bludgeoning
+Data: 291, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 292, Attribute languages, Issue: the languages it knew in life
+Data: 292, Attribute damage_resistances, Issue: necrotic; bludgeoning
+Data: 292, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 293, Attribute languages, Issue: any one language (usually Common)
+Data: 295, Attribute languages, Issue: telepathy 120 ft.
+Data: 295, Attribute damage_resistances, Issue: lightning; bludgeoning
+Data: 295, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 299, Attribute languages, Issue: Aquan
+Data: 299, Attribute damage_resistances, Issue: acid; bludgeoning
+Data: 299, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 299, Attribute condition_immunities, Issue: unconscious
+Data: 301, Attribute languages, Issue: Common (can't speak in bear form)
+Data: 301, Attribute damage_immunities, Issue: and slashing damage from nonmagical weapons that aren't silvered
+Data: 302, Attribute languages, Issue: Common (can't speak in boar form)
+Data: 302, Attribute damage_immunities, Issue: and slashing damage from nonmagical weapons that aren't silvered
+Data: 303, Attribute languages, Issue: Common (can't speak in rat form)
+Data: 303, Attribute damage_immunities, Issue: and slashing damage from nonmagical weapons that aren't silvered
+Data: 304, Attribute languages, Issue: Common (can't speak in tiger form)
+Data: 304, Attribute damage_immunities, Issue: and slashing damage from nonmagical weapons that aren't silvered
+Data: 305, Attribute languages, Issue: Common (can't speak in wolf form)
+Data: 305, Attribute damage_immunities, Issue: and slashing damage from nonmagical weapons that aren't silvered
+Data: 307, Attribute languages, Issue: the languages it knew in life
+Data: 307, Attribute damage_immunities, Issue: necrotic; bludgeoning
+Data: 307, Attribute damage_immunities, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 308, Attribute languages, Issue: the languages it knew in life
+Data: 308, Attribute damage_resistances, Issue: thunder; bludgeoning
+Data: 308, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 308, Attribute condition_immunities, Issue: unconscious
+Data: 309, Attribute languages, Issue: Winter Wolf
+Data: 311, Attribute languages, Issue: Worg
+Data: 312, Attribute languages, Issue: the languages it knew in life
+Data: 312, Attribute damage_resistances, Issue: thunder; bludgeoning
+Data: 312, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 314, Attribute languages, Issue: Terran
+Data: 314, Attribute damage_resistances, Issue: piercing and slashing from nonmagical weapons that aren't adamantine
+Data: 1, Attribute languages, Issue: telepathy 120 ft.
+Data: 2, Attribute languages, Issue: any one language (usually Common)
+Data: 14, Attribute languages, Issue: Auran
+Data: 14, Attribute damage_resistances, Issue: lightning; thunder; bludgeoning
+Data: 14, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 14, Attribute condition_immunities, Issue: unconscious
+Data: 25, Attribute languages, Issue: Sphinx
+Data: 25, Attribute damage_immunities, Issue: psychic; bludgeoning
+Data: 25, Attribute damage_immunities, Issue: and slashing from nonmagical weapons
+Data: 29, Attribute languages, Issue: any six languages
+Data: 29, Attribute damage_resistances, Issue: damage from spells; non magical bludgeoning
+Data: 29, Attribute damage_resistances, Issue: and slashing (from stoneskin)
+Data: 30, Attribute languages, Issue: Thieves' cant plus any two languages
+Data: 31, Attribute languages, Issue: one language known by its creator
+Data: 32, Attribute languages, Issue: one language known by its creator
+Data: 34, Attribute languages, Issue: Ignan
+Data: 37, Attribute languages, Issue: telepathy 120 ft.
+Data: 37, Attribute damage_resistances, Issue: lightning; bludgeoning
+Data: 37, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 38, Attribute languages, Issue: any one language (usually Common)
+Data: 39, Attribute languages, Issue: any two languages
+Data: 40, Attribute languages, Issue: telepathy 120 ft.
+Data: 40, Attribute damage_resistances, Issue: cold; bludgeoning
+Data: 40, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 43, Attribute languages, Issue: telepathy 120 ft.
+Data: 43, Attribute damage_resistances, Issue: cold; bludgeoning
+Data: 43, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 45, Attribute languages, Issue: any one language (usually Common)
+Data: 49, Attribute languages, Issue: Blink Dog
+Data: 49, Attribute languages, Issue: understands Sylvan but can't speak it
+Data: 53, Attribute languages, Issue: telepathy 120 ft.
+Data: 53, Attribute damage_resistances, Issue: cold; bludgeoning
+Data: 53, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 64, Attribute languages, Issue: telepathy 120 ft.
+Data: 64, Attribute damage_resistances, Issue: cold; bludgeoning
+Data: 64, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 65, Attribute languages, Issue: understands Draconic but can't speak
+Data: 66, Attribute languages, Issue: understands Deep Speech but can't speak
+Data: 67, Attribute languages, Issue: understands the languages of its creator but can't speak
+Data: 67, Attribute damage_immunities, Issue: psychic; bludgeoning
+Data: 67, Attribute damage_immunities, Issue: and slashing from nonmagical weapons that aren't adamantine
+Data: 68, Attribute languages, Issue: Undercommon
+Data: 71, Attribute languages, Issue: any one language (usually Common)
+Data: 74, Attribute languages, Issue: all
+Data: 74, Attribute languages, Issue: telepathy 120 ft.
+Data: 74, Attribute damage_immunities, Issue: psychic; bludgeoning
+Data: 74, Attribute damage_immunities, Issue: and slashing from nonmagical weapons
+Data: 77, Attribute languages, Issue: any one language (usually Common)
+Data: 78, Attribute languages, Issue: any one language (usually Common)
+Data: 81, Attribute languages, Issue: Terran
+Data: 81, Attribute languages, Issue: Undercommon
+Data: 83, Attribute languages, Issue: all
+Data: 83, Attribute languages, Issue: telepathy 120 ft.
+Data: 83, Attribute damage_resistances, Issue: radiant; bludgeoning
+Data: 83, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 85, Attribute languages, Issue: Auran
+Data: 85, Attribute damage_immunities, Issue: thunder
+Data: 86, Attribute damage_immunities, Issue: charmed
+Data: 88, Attribute languages, Issue: Aquan
+Data: 89, Attribute languages, Issue: telepathy 60 ft. (works only with creatures that understand Abyssal)
+Data: 90, Attribute languages, Issue: Undercommon
+Data: 91, Attribute languages, Issue: Undercommon
+Data: 92, Attribute languages, Issue: Druidic plus any two languages
+Data: 94, Attribute languages, Issue: Undercommon
+Data: 95, Attribute languages, Issue: Auran
+Data: 95, Attribute languages, Issue: Terran
+Data: 97, Attribute languages, Issue: Terran
+Data: 97, Attribute damage_vulnerabilities, Issue: thunder
+Data: 97, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 97, Attribute condition_immunities, Issue: unconscious
+Data: 98, Attribute languages, Issue: Ignan
+Data: 101, Attribute languages, Issue: telepathy 120 ft.
+Data: 101, Attribute damage_resistances, Issue: cold; bludgeoning
+Data: 101, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 104, Attribute languages, Issue: Ignan
+Data: 104, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 104, Attribute condition_immunities, Issue: unconscious
+Data: 106, Attribute languages, Issue: understands the languages of its creator but can't speak
+Data: 106, Attribute damage_immunities, Issue: poison; bludgeoning
+Data: 106, Attribute damage_immunities, Issue: and slashing from nonmagical weapons that aren't adamantine
+Data: 111, Attribute languages, Issue: Terran
+Data: 111, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't adamantine
+Data: 114, Attribute languages, Issue: any languages it knew in life
+Data: 114, Attribute damage_resistances, Issue: thunder; bludgeoning
+Data: 114, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 124, Attribute languages, Issue: Giant Eagle
+Data: 124, Attribute languages, Issue: understands Common and Auran but can't speak
+Data: 125, Attribute languages, Issue: Giant Elk
+Data: 125, Attribute languages, Issue: understands Common
+Data: 125, Attribute languages, Issue: and Sylvan but can't speak
+Data: 132, Attribute languages, Issue: Giant Owl
+Data: 132, Attribute languages, Issue: understands Common
+Data: 132, Attribute languages, Issue: and Sylvan but can't speak
+Data: 141, Attribute languages, Issue: understands Common but can't speak
+Data: 146, Attribute languages, Issue: telepathy 120 ft.
+Data: 146, Attribute damage_resistances, Issue: lightning; bludgeoning
+Data: 146, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 147, Attribute languages, Issue: any one language (usually Common)
+Data: 148, Attribute languages, Issue: Gnoll
+Data: 152, Attribute damage_immunities, Issue: petrified
+Data: 156, Attribute damage_resistances, Issue: and slashing damage from nonmagical weapons
+Data: 158, Attribute languages, Issue: Undercommon
+Data: 158, Attribute damage_immunities, Issue: blinded
+Data: 159, Attribute languages, Issue: any one language (usually Common)
+Data: 161, Attribute languages, Issue: Sphinx
+Data: 161, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 165, Attribute languages, Issue: understands Infernal but can't speak it
+Data: 166, Attribute languages, Issue: telepathy 120 ft.
+Data: 166, Attribute damage_resistances, Issue: lightning; bludgeoning
+Data: 166, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 170, Attribute languages, Issue: understands the languages of its creator but can't speak
+Data: 171, Attribute languages, Issue: telepathy 120 ft.
+Data: 171, Attribute damage_resistances, Issue: cold; bludgeoning
+Data: 171, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 175, Attribute languages, Issue: telepathy 120 ft.
+Data: 175, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 176, Attribute languages, Issue: Aquan
+Data: 176, Attribute languages, Issue: Auran
+Data: 177, Attribute damage_resistances, Issue: cold; bludgeoning
+Data: 177, Attribute damage_resistances, Issue: and slashing from nonmagical/nonsilver weapons
+Data: 178, Attribute languages, Issue: Auran
+Data: 178, Attribute languages, Issue: understands Common but doesn't speak it
+Data: 178, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 178, Attribute condition_immunities, Issue: unconscious
+Data: 179, Attribute languages, Issue: understands the languages of its creator but can't speak
+Data: 179, Attribute damage_immunities, Issue: psychic; bludgeoning
+Data: 179, Attribute damage_immunities, Issue: and slashing from nonmagical weapons that aren't adamantine
+Data: 182, Attribute languages, Issue: any one language (usually Common)
+Data: 184, Attribute languages, Issue: understands Abyssal
+Data: 184, Attribute languages, Issue: and Primordial but can't speak
+Data: 184, Attribute languages, Issue: telepathy 120 ft.
+Data: 184, Attribute damage_immunities, Issue: lightning; bludgeoning
+Data: 184, Attribute damage_immunities, Issue: and slashing from nonmagical weapons
+Data: 186, Attribute languages, Issue: understands infernal but can't speak
+Data: 187, Attribute languages, Issue: Common plus up to five other languages
+Data: 187, Attribute damage_immunities, Issue: poison; bludgeoning
+Data: 187, Attribute damage_immunities, Issue: and slashing from nonmagical weapons
+Data: 191, Attribute languages, Issue: any four languages
+Data: 192, Attribute languages, Issue: Ignan
+Data: 192, Attribute languages, Issue: Terran
+Data: 193, Attribute languages, Issue: Ignan
+Data: 193, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 196, Attribute languages, Issue: telepathy 120 ft.
+Data: 196, Attribute damage_resistances, Issue: lightning; bludgeoning
+Data: 196, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 199, Attribute languages, Issue: Aquan
+Data: 200, Attribute languages, Issue: Aquan
+Data: 203, Attribute languages, Issue: understands Abyssal but can't speak
+Data: 205, Attribute languages, Issue: the languages it knew in life
+Data: 205, Attribute damage_immunities, Issue: and slashing from nonmagical weapons
+Data: 205, Attribute condition_immunities, Issue: necrotic
+Data: 206, Attribute languages, Issue: the languages it knew in life
+Data: 206, Attribute damage_immunities, Issue: poison; bludgeoning
+Data: 206, Attribute damage_immunities, Issue: and slashing from nonmagical weapons
+Data: 207, Attribute languages, Issue: telepathy 120 ft.
+Data: 207, Attribute damage_resistances, Issue: lightning; bludgeoning
+Data: 207, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 208, Attribute damage_resistances, Issue: fire; bludgeoning
+Data: 208, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 209, Attribute languages, Issue: understands Abyssal
+Data: 209, Attribute languages, Issue: and Infernal but can't speak
+Data: 210, Attribute languages, Issue: any two languages
+Data: 214, Attribute languages, Issue: understands Common and Giant but can't speak
+Data: 217, Attribute languages, Issue: Otyugh
+Data: 221, Attribute languages, Issue: understands Celestial
+Data: 221, Attribute languages, Issue: and Sylvan but can't speak
+Data: 223, Attribute languages, Issue: telepathy 120 ft.
+Data: 223, Attribute damage_resistances, Issue: cold; bludgeoning
+Data: 223, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 224, Attribute languages, Issue: all
+Data: 224, Attribute languages, Issue: telepathy 120 ft.
+Data: 224, Attribute damage_resistances, Issue: radiant; bludgeoning
+Data: 224, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 229, Attribute languages, Issue: any two languages
+Data: 230, Attribute languages, Issue: understands Common and Draconic but can't speak
+Data: 232, Attribute damage_resistances, Issue: cold; fire; lightning; bludgeoning
+Data: 232, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 234, Attribute damage_vulnerabilities, Issue: piercing from magic weapons wielded by good creatures
+Data: 234, Attribute damage_immunities, Issue: and slashing from nonmagical weapons
+Data: 247, Attribute languages, Issue: Sahuagin
+Data: 248, Attribute languages, Issue: Ignan
+Data: 248, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 251, Attribute languages, Issue: any one language (usually Common)
+Data: 252, Attribute languages, Issue: Aquan
+Data: 254, Attribute damage_resistances, Issue: thunder; bludgeoning
+Data: 254, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 256, Attribute languages, Issue: understands commands given in any language but can't speak
+Data: 259, Attribute languages, Issue: understands all languages it spoke in life but can't speak
+Data: 260, Attribute languages, Issue: all
+Data: 260, Attribute languages, Issue: telepathy 120 ft.
+Data: 260, Attribute damage_resistances, Issue: radiant; bludgeoning
+Data: 260, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 261, Attribute languages, Issue: understands all languages it knew in life but can't speak
+Data: 261, Attribute damage_resistances, Issue: thunder; bludgeoning
+Data: 261, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 261, Attribute condition_immunities, Issue: unconscious
+Data: 265, Attribute languages, Issue: any two languages
+Data: 266, Attribute languages, Issue: Aquan
+Data: 266, Attribute languages, Issue: Ignan
+Data: 269, Attribute languages, Issue: understands the languages of its creator but can't speak
+Data: 269, Attribute damage_immunities, Issue: psychic; bludgeoning
+Data: 269, Attribute damage_immunities, Issue: and slashing from nonmagical weapons that aren't adamantine
+Data: 270, Attribute damage_immunities, Issue: thunder
+Data: 271, Attribute languages, Issue: telepathy 60 ft.
+Data: 271, Attribute damage_resistances, Issue: poison; bludgeoning
+Data: 271, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 282, Attribute damage_immunities, Issue: poison; bludgeoning
+Data: 282, Attribute damage_immunities, Issue: and slashing from nonmagical weapons
+Data: 283, Attribute languages, Issue: any one language (usually Common)
+Data: 285, Attribute languages, Issue: Druidic
+Data: 286, Attribute languages, Issue: any one language
+Data: 290, Attribute languages, Issue: telepathy 60 ft.
+Data: 291, Attribute languages, Issue: the languages it knew in life
+Data: 291, Attribute damage_resistances, Issue: necrotic; bludgeoning
+Data: 291, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 292, Attribute languages, Issue: the languages it knew in life
+Data: 292, Attribute damage_resistances, Issue: necrotic; bludgeoning
+Data: 292, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 293, Attribute languages, Issue: any one language (usually Common)
+Data: 295, Attribute languages, Issue: telepathy 120 ft.
+Data: 295, Attribute damage_resistances, Issue: lightning; bludgeoning
+Data: 295, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 299, Attribute languages, Issue: Aquan
+Data: 299, Attribute damage_resistances, Issue: acid; bludgeoning
+Data: 299, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 299, Attribute condition_immunities, Issue: unconscious
+Data: 301, Attribute languages, Issue: Common (can't speak in bear form)
+Data: 301, Attribute damage_immunities, Issue: and slashing damage from nonmagical weapons that aren't silvered
+Data: 302, Attribute languages, Issue: Common (can't speak in boar form)
+Data: 302, Attribute damage_immunities, Issue: and slashing damage from nonmagical weapons that aren't silvered
+Data: 303, Attribute languages, Issue: Common (can't speak in rat form)
+Data: 303, Attribute damage_immunities, Issue: and slashing damage from nonmagical weapons that aren't silvered
+Data: 304, Attribute languages, Issue: Common (can't speak in tiger form)
+Data: 304, Attribute damage_immunities, Issue: and slashing damage from nonmagical weapons that aren't silvered
+Data: 305, Attribute languages, Issue: Common (can't speak in wolf form)
+Data: 305, Attribute damage_immunities, Issue: and slashing damage from nonmagical weapons that aren't silvered
+Data: 307, Attribute languages, Issue: the languages it knew in life
+Data: 307, Attribute damage_immunities, Issue: necrotic; bludgeoning
+Data: 307, Attribute damage_immunities, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 308, Attribute languages, Issue: the languages it knew in life
+Data: 308, Attribute damage_resistances, Issue: thunder; bludgeoning
+Data: 308, Attribute damage_resistances, Issue: and slashing from nonmagical weapons
+Data: 308, Attribute condition_immunities, Issue: unconscious
+Data: 309, Attribute languages, Issue: Winter Wolf
+Data: 311, Attribute languages, Issue: Worg
+Data: 312, Attribute languages, Issue: the languages it knew in life
+Data: 312, Attribute damage_resistances, Issue: thunder; bludgeoning
+Data: 312, Attribute damage_resistances, Issue: and slashing from nonmagical weapons that aren't silvered
+Data: 314, Attribute languages, Issue: Terran
+Data: 314, Attribute damage_resistances, Issue: piercing and slashing from nonmagical weapons that aren't adamantine
