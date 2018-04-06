@@ -61,7 +61,7 @@ class EquipmentCategory(models.Model):
 class EquipmentSubCategory(models.Model):
     name = models.CharField(max_length=100, unique=True)
     desc = models.CharField(max_length=10000)
-    equipment_category = models.ForeignKey(EquipmentCategory, on_delete=models.CASCADE)
+    equipment_category = models.ForeignKey(EquipmentCategory, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name
@@ -70,7 +70,7 @@ class EquipmentSubCategory(models.Model):
 class Equipment(models.Model):
     name = models.CharField(max_length=100, unique=True)
     desc = models.CharField(max_length=10000)
-    equipment_category = models.ForeignKey(EquipmentSubCategory, on_delete=models.CASCADE)
+    equipment_category = models.ForeignKey(EquipmentSubCategory, on_delete=models.CASCADE, null=True)
     cost_quantity = models.IntegerField()
     cost_denom = models.CharField(max_length=2)
 

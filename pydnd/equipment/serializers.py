@@ -1,10 +1,23 @@
 from rest_framework import serializers
-from .models import Equipment, Weapon, Armor
+from .models import Equipment, Weapon, Armor, EquipmentCategory, EquipmentSubCategory
 
 class EquipmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Equipment
+        fields = '__all__'
+
+class EquipmentCategorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = EquipmentCategory
+        fields = '__all__'
+
+
+class EquipmentSubCategorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = EquipmentSubCategory
         fields = '__all__'
 
 
@@ -39,5 +52,7 @@ class ArmorListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Armor
         fields = ('id', 'name')
+
+
 
 
