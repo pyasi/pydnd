@@ -37,8 +37,6 @@ class EquipmentCategoryGet(APIView):
 
 class EquipmentSubCategoryGet(APIView):
 
-
-
     def get(self, request, name_or_id):
 
         if name_or_id.isdigit():
@@ -60,7 +58,6 @@ class EquipmentSubCategoryGet(APIView):
         queryset_dict["equipment_category"] = equipment_category_dict
 
         return Response(queryset_dict, status=status.HTTP_200_OK)
-
 
 
 class EquipmentSubCategoryList(generics.ListCreateAPIView):
@@ -88,8 +85,6 @@ class EquipmentSubCategoryList(generics.ListCreateAPIView):
 
     queryset = EquipmentSubCategory.objects.all()
     serializer_class = EquipmentSubCategorySerializer
-
-
 
 
 class EquipmentList(generics.ListCreateAPIView):
@@ -121,8 +116,6 @@ class EquipmentList(generics.ListCreateAPIView):
 
 class EquipmentGet(APIView):
 
-
-
     def get(self, request, name_or_id):
 
         if name_or_id.isdigit():
@@ -138,21 +131,10 @@ class EquipmentGet(APIView):
         queryset_dict["name"]=queryset.name
         queryset_dict["cost_quantity"]=queryset.cost_quantity
         queryset_dict["cost_denom"]=queryset.cost_denom
-
-        equipment_subcategory_dict ={}
-        equipment_subcategory_dict["id"] = equipment_subcategory.id
-        equipment_subcategory_dict["name"] = equipment_subcategory.name
-
-        equipment_category_dict = {}
-        equipment_category_dict["id"]=equipment_category.id
-        equipment_category_dict["name"]=equipment_category.name
-
-        equipment_subcategory_dict["equipment_category"] = equipment_category_dict
-
-        queryset_dict["equipment_category"]=equipment_subcategory_dict
+        queryset_dict["equipment_subcategory"]=equipment_subcategory.name
+        queryset_dict["equipment_category"]=equipment_category.name
 
         return Response(queryset_dict, status=status.HTTP_200_OK)
-
 
 
 class ArmorList(APIView):
