@@ -15,6 +15,7 @@ INDEPENDENT_ATTRIBUTES = ['languages', 'damage_vulnerabilities', 'damage_resista
 DEPENDENT_ATTRIBUTES = ['special_abilities', 'reactions', 'legendary_actions', 'actions']
 ALL_ATTRIBUTES = INDEPENDENT_ATTRIBUTES + DEPENDENT_ATTRIBUTES
 
+
 # TODO Remove Post ability - Admin required?
 class MonsterList(generics.ListCreateAPIView):
 
@@ -103,6 +104,7 @@ def get_attribute_by_name(data, attribute_name, model_type):
                 #TODO So many that we can't get due to wording.
                 print("Couldn't get: {}".format(attribute))
                 with open('failures.txt', 'a') as file:
+                    pass
                     #file.write("Data: {}, Attribute {}, Issue: {}\n".format(data['index'], attribute_name, attribute))
     except KeyError:
         pass
