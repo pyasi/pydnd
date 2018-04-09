@@ -54,17 +54,16 @@ class EquipmentSubCategoryGet(APIView):
         equipment_category = get_object_or_404(EquipmentCategory, pk = int(queryset.equipment_category.id))
 
         try:
+
             queryset_dict = {}
             queryset_dict["id"]=queryset.id
             queryset_dict["name"]=queryset.name
             queryset_dict["desc"]=queryset.desc
-        except KeyError:
-            raise Http404
 
-        try:
             equipment_category_dict = {}
             equipment_category_dict["id"]=equipment_category.id
             equipment_category_dict["name"]=equipment_category.name
+
         except KeyError:
             raise Http404
 
@@ -148,24 +147,20 @@ class EquipmentGet(APIView):
 
         queryset_dict = {}
         try:
+
             queryset_dict["id"]=queryset.id
             queryset_dict["name"]=queryset.name
             queryset_dict["cost_quantity"]=queryset.cost_quantity
             queryset_dict["cost_denom"]=queryset.cost_denom
-        except KeyError:
-            raise Http404
 
-        try:
             equipment_subcategory_dict ={}
             equipment_subcategory_dict["id"] = equipment_subcategory.id
             equipment_subcategory_dict["name"] = equipment_subcategory.name
-        except KeyError:
-            raise Http404
 
-        try:
             equipment_category_dict = {}
             equipment_category_dict["id"]=equipment_category.id
             equipment_category_dict["name"]=equipment_category.name
+
         except KeyError:
             raise Http404
 
