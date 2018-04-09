@@ -9,6 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from .models import Equipment, Armor, Weapon, EquipmentSubCategory, EquipmentCategory
 from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer,EquipmentSubCategoryLstSerializer, EquipmentListSerializer
 
+
 #List of all equipment
 class EquipmentList(APIView):
 
@@ -17,11 +18,13 @@ class EquipmentList(APIView):
         data = EquipmentListSerializer(equipment, many=True).data
         return Response(data)
 
+
 #List of all equipment categories
 class EquipmentCategoryList(generics.ListCreateAPIView):
 
     queryset = EquipmentCategory.objects.all()
     serializer_class =  EquipmentCategorySerializer
+
 
 #Get for specific equipment category
 class EquipmentCategoryGet(APIView):
@@ -37,6 +40,7 @@ class EquipmentCategoryGet(APIView):
 
         return Response(model_to_dict(queryset), status=status.HTTP_200_OK)
 
+
 #Get for specific equipment sub categories
 class EquipmentSubCategoryGet(APIView):
 
@@ -47,9 +51,7 @@ class EquipmentSubCategoryGet(APIView):
         else:
             queryset = get_object_or_404(EquipmentSubCategory, name = name_or_id)
 
-
         equipment_category = get_object_or_404(EquipmentCategory, pk = int(queryset.equipment_category.id))
-
 
         try:
             queryset_dict = {}
@@ -66,10 +68,10 @@ class EquipmentSubCategoryGet(APIView):
         except KeyError:
             raise Http404
 
-
         queryset_dict["equipment_category"] = equipment_category_dict
 
         return Response(queryset_dict, status=status.HTTP_200_OK)
+
 
 #TODO Remove Post
 #List of equipment sub categories
@@ -99,6 +101,7 @@ class EquipmentSubCategoryList(generics.ListCreateAPIView):
     queryset = EquipmentSubCategory.objects.all()
     serializer_class = EquipmentSubCategorySerializer
 
+
 #TODO Remove Post
 #List of all equipment
 class EquipmentList(generics.ListCreateAPIView):
@@ -126,6 +129,7 @@ class EquipmentList(generics.ListCreateAPIView):
 
     queryset = Equipment.objects.all()
     serializer_class = EquipmentListSerializer
+
 
 #Get for specific equipment
 class EquipmentGet(APIView):
