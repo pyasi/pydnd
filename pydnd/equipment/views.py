@@ -1,14 +1,16 @@
 from django.shortcuts import render,get_object_or_404
 from rest_framework import generics, status
+from django.http import Http404
 # Create your views here.
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Equipment, Armor, Weapon, EquipmentSubCategory, EquipmentCategory
-from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer
+from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer,EquipmentSubCategoryLstSerializer, EquipmentListSerializer
 
 
+#List of all equipment
 class EquipmentList(APIView):
 
    def get(self, request):
@@ -17,24 +19,61 @@ class EquipmentList(APIView):
         return Response(data)
 
 
+#List of all equipment categories
 class EquipmentCategoryList(generics.ListCreateAPIView):
 
     queryset = EquipmentCategory.objects.all()
     serializer_class =  EquipmentCategorySerializer
 
 
+#Get for specific equipment category
 class EquipmentCategoryGet(APIView):
 
     serializer_class = EquipmentCategorySerializer
 
     def get(self, request, name_or_id):
+
         if name_or_id.isdigit():
-            queryset = EquipmentCategory.objects.get(id=int(name_or_id))
+            queryset = get_object_or_404(EquipmentCategory, pk = int(name_or_id))
         else:
-            queryset = EquipmentCategory.objects.get(name__iexact=name_or_id)
+            queryset = get_object_or_404(EquipmentCategory, name = name_or_id)
+
         return Response(model_to_dict(queryset), status=status.HTTP_200_OK)
 
 
+#Get for specific equipment sub categories
+class EquipmentSubCategoryGet(APIView):
+
+    def get(self, request, name_or_id):
+
+        if name_or_id.isdigit():
+            queryset = get_object_or_404(EquipmentSubCategory, pk = int(name_or_id))
+        else:
+            queryset = get_object_or_404(EquipmentSubCategory, name = name_or_id)
+
+        equipment_category = get_object_or_404(EquipmentCategory, pk = int(queryset.equipment_category.id))
+
+        try:
+
+            queryset_dict = {}
+            queryset_dict["id"]=queryset.id
+            queryset_dict["name"]=queryset.name
+            queryset_dict["desc"]=queryset.desc
+
+            equipment_category_dict = {}
+            equipment_category_dict["id"]=equipment_category.id
+            equipment_category_dict["name"]=equipment_category.name
+
+        except KeyError:
+            raise Http404
+
+        queryset_dict["equipment_category"] = equipment_category_dict
+
+        return Response(queryset_dict, status=status.HTTP_200_OK)
+
+
+#TODO Remove Post
+#List of equipment sub categories
 class EquipmentSubCategoryList(generics.ListCreateAPIView):
 
     def post(self, request, *args, **kwargs):
@@ -43,7 +82,7 @@ class EquipmentSubCategoryList(generics.ListCreateAPIView):
 
         equipment_category_name = data.pop("equipment_category")
 
-        equipment_category_object = EquipmentCategory.objects.get(name=equipment_category_name)
+        equipment_category_object = get_object_or_404(EquipmentCategory, name = equipment_category_name)
 
         equipment_sub_category = EquipmentSubCategorySerializer(data=data)
 
@@ -60,6 +99,75 @@ class EquipmentSubCategoryList(generics.ListCreateAPIView):
 
     queryset = EquipmentSubCategory.objects.all()
     serializer_class = EquipmentSubCategorySerializer
+
+
+#TODO Remove Post
+#List of all equipment
+class EquipmentList(generics.ListCreateAPIView):
+
+    def post(self, request, *args, **kwargs):
+
+        data = request.data
+
+        equipment_subcategory_name = data.pop("equipment_category")
+
+        equipment_subcategory_object = get_object_or_404(EquipmentSubCategory, name = equipment_subcategory_name)
+
+        equipment= EquipmentSerializer(data=data)
+
+        if equipment.is_valid():
+            equipment_object = equipment.save()
+        else:
+            equipment_object = get_object_or_404(Equipment, name=equipment.initial_data['name'])
+
+        equipment_object.equipment_category = equipment_subcategory_object
+
+        equipment_object.save()
+
+        return Response(data, status=status.HTTP_200_OK)
+
+    queryset = Equipment.objects.all()
+    serializer_class = EquipmentListSerializer
+
+
+#Get for specific equipment
+class EquipmentGet(APIView):
+
+    def get(self, request, name_or_id):
+
+        if name_or_id.isdigit():
+            queryset = get_object_or_404(Equipment, pk = int(name_or_id))
+        else:
+            queryset = get_object_or_404(Equipment, name = name_or_id)
+
+
+        equipment_subcategory = get_object_or_404(EquipmentSubCategory, pk =int(queryset.equipment_category.id))
+
+        equipment_category = get_object_or_404(EquipmentCategory, pk = int(equipment_subcategory.equipment_category.id))
+
+        queryset_dict = {}
+        try:
+
+            queryset_dict["id"]=queryset.id
+            queryset_dict["name"]=queryset.name
+            queryset_dict["cost_quantity"]=queryset.cost_quantity
+            queryset_dict["cost_denom"]=queryset.cost_denom
+
+            equipment_subcategory_dict ={}
+            equipment_subcategory_dict["id"] = equipment_subcategory.id
+            equipment_subcategory_dict["name"] = equipment_subcategory.name
+
+            equipment_category_dict = {}
+            equipment_category_dict["id"]=equipment_category.id
+            equipment_category_dict["name"]=equipment_category.name
+
+        except KeyError:
+            raise Http404
+
+        queryset_dict["equipment_subcategory"]=equipment_subcategory_dict
+        queryset_dict["equipment_category"]=equipment_category_dict
+
+        return Response(queryset_dict, status=status.HTTP_200_OK)
 
 
 class ArmorList(APIView):
