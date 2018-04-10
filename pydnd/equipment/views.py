@@ -6,8 +6,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist
-from .models import Equipment, Armor, Weapon, EquipmentSubCategory, EquipmentCategory
-from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer,EquipmentSubCategoryLstSerializer, EquipmentListSerializer
+
+from .models import Equipment, Armor, Weapon, EquipmentSubCategory, EquipmentCategory,ArmorCategory
+from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer,EquipmentSubCategoryListSerializer, EquipmentListSerializer, ArmorSerializer, ArmorCategorySerializer
+
 
 
 #List of all equipment
@@ -170,17 +172,65 @@ class EquipmentGet(APIView):
         return Response(queryset_dict, status=status.HTTP_200_OK)
 
 
-class ArmorList(APIView):
-
-    def get(self, request):
-        armor = Armor.objects.all()
-        data = ArmorListSerializer(armor, many=True).data
-        return Response(data)
-
-
 class WeaponList(APIView):
 
     def get(self, request):
         weapon = Weapon.objects.all()
         data = WeaponListSerializer(weapon, many=True).data
         return Response(data)
+
+
+#TODO Remove Post
+#List of equipment sub categories
+class ArmorList(generics.ListCreateAPIView):
+
+    def post(self, request, *args, **kwargs):
+
+        data = request.data
+
+        armor_category = get_attribute_by_name(data, 'armor_category', ArmorCategory)
+
+        armor = ArmorSerializer(data=data)
+        if armor.is_valid():
+            armor_object = armor.save()
+            armor_object.armor_category = armor_category
+            armor_object = armor_object.save()
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(model_to_dict(armor_object))
+
+    queryset = Armor.objects.all()
+    serializer_class = ArmorListSerializer
+
+
+class ArmorGet(APIView):
+
+    def get(self, request, name_or_id):
+
+        if name_or_id.isdigit():
+            queryset = get_object_or_404(Armor, pk = int(name_or_id))
+        else:
+            queryset = get_object_or_404(Armor, name = name_or_id)
+
+        armor_category = get_object_or_404(ArmorCategory, pk =int(queryset.armor_category.id))
+
+        queryset_dict = model_to_dict(queryset)
+
+        armor_category_dict = model_to_dict(armor_category)
+
+        queryset_dict["armor_category"] = armor_category_dict
+
+        return Response(queryset_dict, status=status.HTTP_200_OK)
+
+
+class ArmorCategoryList(generics.ListCreateAPIView):
+
+    queryset = ArmorCategory.objects.all()
+    serializer_class = ArmorCategorySerializer
+
+
+def get_attribute_by_name(data, attribute_name, model_type):
+    attribute_value = data.pop(attribute_name)
+    attribute_model = get_object_or_404(model_type, name__iexact=attribute_value)
+    return attribute_model

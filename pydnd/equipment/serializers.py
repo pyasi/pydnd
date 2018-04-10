@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Equipment, Weapon, Armor, EquipmentCategory, EquipmentSubCategory
+from .models import Equipment, Weapon, Armor, EquipmentCategory, EquipmentSubCategory, ArmorCategory, WeaponCategory, WeaponProperty
+
 
 class EquipmentSerializer(serializers.ModelSerializer):
 
@@ -30,21 +31,14 @@ class EquipmentSubCategorySerializer(serializers.ModelSerializer):
         model = EquipmentSubCategory
         fields = ('id','name','equipment_category')
 
-class EquipmentSubCategoryLstSerializer(serializers.ModelSerializer):
+
+class EquipmentSubCategoryListSerializer(serializers.ModelSerializer):
 
 
     class Meta:
         model = EquipmentSubCategory
         fields = ('id','name','equipment_category')
 
-
-
-
-class WeaponSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Weapon
-        fields = '__all__'
 
 class ArmorSerializer(serializers.ModelSerializer):
 
@@ -53,12 +47,6 @@ class ArmorSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class EquipmentListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Equipment
-        fields = ('id', 'name')
-
 
 class WeaponListSerializer(serializers.ModelSerializer):
 
@@ -66,12 +54,45 @@ class WeaponListSerializer(serializers.ModelSerializer):
         model = Weapon
         fields = ('id', 'name')
 
-class ArmorListSerializer(serializers.ModelSerializer):
+
+
+
+class ArmorCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Armor
+        model = ArmorCategory
         fields = ('id', 'name')
 
 
+class WeaponCategorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = WeaponCategory
+        fields = '__all__'
 
 
+class ArmorListSerializer(serializers.ModelSerializer):
+
+    armor_category=ArmorCategorySerializer(read_only=True)
+
+    class Meta:
+        model = Armor
+        fields = ('id', 'name', 'armor_category')
+
+
+class WeaponPropertySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = WeaponProperty
+        fields = '__all__'
+
+
+
+class WeaponSerializer(serializers.ModelSerializer):
+
+    weapon_category = WeaponCategorySerializer
+    weapon_property = WeaponPropertySerializer
+
+    class Meta:
+        model = Weapon
+        fields = '__all__'
