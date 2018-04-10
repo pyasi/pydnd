@@ -11,6 +11,11 @@ from pydnd.skills.serializers import SpecialAbilitySerializer, ActionSerializer,
 from pydnd.mechanics.models import Language, Condition, DamageType
 
 
+INDEPENDENT_ATTRIBUTES = ['languages', 'damage_vulnerabilities', 'damage_resistances', 'damage_immunities', 'condition_immunities']
+DEPENDENT_ATTRIBUTES = ['special_abilities', 'reactions', 'legendary_actions', 'actions']
+ALL_ATTRIBUTES = INDEPENDENT_ATTRIBUTES + DEPENDENT_ATTRIBUTES
+
+
 # TODO Remove Post ability - Admin required?
 class MonsterList(generics.ListCreateAPIView):
 
@@ -79,7 +84,7 @@ def create_attribute(data, attribute_name, serializer, model_type):
             if attribute_model.is_valid():
                 monster_attributes.append(attribute_model.save())
             else:
-                monster_attributes.append(get_object_or_404(model_type, name=attribute_model.initial_data['name']))
+                monster_attributes.append(get_object_or_404(model_type, desc=attribute_model.initial_data['desc']))
     except KeyError:
         pass
 
@@ -99,7 +104,8 @@ def get_attribute_by_name(data, attribute_name, model_type):
                 #TODO So many that we can't get due to wording.
                 print("Couldn't get: {}".format(attribute))
                 with open('failures.txt', 'a') as file:
-                    file.write("Data: {}, Attribute {}, Issue: {}\n".format(data['index'], attribute_name, attribute))
+                    pass
+                    #file.write("Data: {}, Attribute {}, Issue: {}\n".format(data['index'], attribute_name, attribute))
     except KeyError:
         pass
 
@@ -119,7 +125,7 @@ class MonsterActionsList(APIView):
     serializer_class = MonsterSerializer
 
     def get(self, request, name_or_id):
-        return respond_to_monster_request(name_or_id, attribute='actions')
+        return respond_to_monster_request(name_or_id, attribute_to_get='actions')
 
 
 class MonsterSpecialAbilityList(APIView):
@@ -127,7 +133,7 @@ class MonsterSpecialAbilityList(APIView):
     serializer_class = MonsterSerializer
 
     def get(self, request, name_or_id):
-        return respond_to_monster_request(name_or_id, attribute='special_abilities')
+        return respond_to_monster_request(name_or_id, attribute_to_get='special_abilities')
 
 
 # HELPER METHODS
@@ -150,39 +156,16 @@ def get_monster_attribute(model, attribute_to_get):
     return attributes
 
 
-def respond_to_monster_request(name_or_id, attribute=None):
+def respond_to_monster_request(name_or_id, attribute_to_get=None):
     try:
         model = get_monster(name_or_id)
 
-        special_abilities = get_monster_attribute(model, 'special_abilities')
-        model['special_abilities'] = special_abilities
+        for attribute in ALL_ATTRIBUTES:
+            attributes = get_monster_attribute(model, attribute)
+            model[attribute] = attributes
 
-        actions = get_monster_attribute(model, 'actions')
-        model['actions'] = actions
-
-        reactions = get_monster_attribute(model, 'reactions')
-        model['reactions'] = reactions
-
-        legendary_actions = get_monster_attribute(model, 'legendary_actions')
-        model['legendary_actions'] = legendary_actions
-
-        languages = get_monster_attribute(model, 'languages')
-        model['languages'] = languages
-
-        damage_vulnerabilities = get_monster_attribute(model, 'damage_vulnerabilities')
-        model['damage_vulnerabilities'] = damage_vulnerabilities
-
-        damage_resistances = get_monster_attribute(model, 'damage_resistances')
-        model['damage_resistances'] = damage_resistances
-
-        damage_immunities = get_monster_attribute(model, 'damage_immunities')
-        model['damage_immunities'] = damage_immunities
-
-        condition_immunities = get_monster_attribute(model, 'condition_immunities')
-        model['condition_immunities'] = condition_immunities
-
-        if attribute:
-            return Response(model[attribute], status=status.HTTP_200_OK)
+        if attribute_to_get:
+            return Response(model[attribute_to_get], status=status.HTTP_200_OK)
         else:
             return Response(model, status=status.HTTP_200_OK)
     except ObjectDoesNotExist:

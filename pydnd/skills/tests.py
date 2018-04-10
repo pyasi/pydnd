@@ -47,7 +47,7 @@ class TestSpecialAbilityGet(APITestCase):
 
     def test_get_by_name(self):
         request = self.factory.get(self.uri)
-        response = self.view(request, name_or_id='Amphibious')
+        response = self.view(request, name_or_id='Inscrutable')
         self.assertEqual(response.status_code, 200,
                          'Expected Response Code 200, received {0} instead.'
                          .format(response.status_code))
@@ -55,7 +55,7 @@ class TestSpecialAbilityGet(APITestCase):
 
     def test_get_by_name_case_insensitive(self):
         request = self.factory.get(self.uri)
-        response = self.view(request, name_or_id='amphibioUs')
+        response = self.view(request, name_or_id='inscruTable')
         self.assertEqual(response.status_code, 200,
                          'Expected Response Code 200, received {0} instead.'
                          .format(response.status_code))
