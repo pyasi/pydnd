@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist
-from .models import Equipment, Armor, Weapon, EquipmentSubCategory, EquipmentCategory
+from .models import Equipment, Armor, Weapon, EquipmentSubCategory, EquipmentCategory, ArmorCategory
 from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer
 
 
@@ -60,6 +60,12 @@ class EquipmentSubCategoryList(generics.ListCreateAPIView):
 
     queryset = EquipmentSubCategory.objects.all()
     serializer_class = EquipmentSubCategorySerializer
+
+
+class ArmorCategoryList(generics.ListCreateAPIView):
+
+    queryset = ArmorCategory.objects.all()
+    serializer_class =  EquipmentCategorySerializer
 
 
 class ArmorList(APIView):
