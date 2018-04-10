@@ -11,4 +11,5 @@ urlpatterns = [
     path("equipment_subcategory/<str:name_or_id>/", EquipmentSubCategoryGet.as_view(), name="equipment_subcategory_get"),
     path("equipment/", EquipmentList.as_view(), name="equipment"),
     path("equipment/<str:name_or_id>/", EquipmentGet.as_view(), name="equipment_get"),
+    path("armor/", ArmorList.as_view(), name="armor"),
 ]
