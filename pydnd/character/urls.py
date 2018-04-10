@@ -8,5 +8,4 @@ urlpatterns = [
     path("skills/<str:name_or_id>/", GetSkill.as_view(), name="skills"),
     path("spells/", SpellList.as_view(), name="spells"),
     path("spells/<str:name_or_id>/", GetSpell.as_view(), name="spells"),
-
 ]
