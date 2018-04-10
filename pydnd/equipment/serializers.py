@@ -7,18 +7,37 @@ class EquipmentSerializer(serializers.ModelSerializer):
         model = Equipment
         fields = '__all__'
 
+
+class EquipmentListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Equipment
+        fields = ('id','name')
+
+
 class EquipmentCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = EquipmentCategory
-        fields = '__all__'
+        fields = ('id', 'name')
 
 
 class EquipmentSubCategorySerializer(serializers.ModelSerializer):
 
+    equipment_category = EquipmentCategorySerializer(read_only=True)
+
     class Meta:
         model = EquipmentSubCategory
-        fields = '__all__'
+        fields = ('id','name','equipment_category')
+
+class EquipmentSubCategoryLstSerializer(serializers.ModelSerializer):
+
+
+    class Meta:
+        model = EquipmentSubCategory
+        fields = ('id','name','equipment_category')
+
+
 
 
 class ArmorSerializer(serializers.ModelSerializer):

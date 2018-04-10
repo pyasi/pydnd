@@ -26,3 +26,13 @@ with open('scripts/monsters.json', 'r') as file:
             print(obj)
             failures.append(obj['index'])
 print('Failures: {}'.format(failures))
+
+# url = "http://127.0.0.1:8000/"
+#
+# response = requests.get(url + 'special_abilities/')
+# body = response.json()
+# descriptions = []
+# for item in body:
+#     if item['desc'] in descriptions:
+#         print("action {}, ".format(item['name']) + item['desc'])
+#     descriptions.append(item['desc'])
