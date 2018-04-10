@@ -103,9 +103,6 @@ class EquipmentSubCategoryList(generics.ListCreateAPIView):
     serializer_class = EquipmentSubCategorySerializer
 
 
-
-
-
 #TODO Remove Post
 #List of all equipment
 class EquipmentList(generics.ListCreateAPIView):
@@ -175,7 +172,6 @@ class EquipmentGet(APIView):
         return Response(queryset_dict, status=status.HTTP_200_OK)
 
 
-
 class WeaponList(APIView):
 
     def get(self, request):
@@ -205,6 +201,7 @@ class ArmorList(generics.ListCreateAPIView):
 
     queryset = Armor.objects.all()
     serializer_class = ArmorListSerializer
+
 
 class ArmorGet(APIView):
 

@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Equipment, Weapon, Armor, EquipmentCategory, EquipmentSubCategory, ArmorCategory, WeaponCategory, WeaponProperty
 
+
 class EquipmentSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -30,13 +31,13 @@ class EquipmentSubCategorySerializer(serializers.ModelSerializer):
         model = EquipmentSubCategory
         fields = ('id','name','equipment_category')
 
+
 class EquipmentSubCategoryListSerializer(serializers.ModelSerializer):
 
 
     class Meta:
         model = EquipmentSubCategory
         fields = ('id','name','equipment_category')
-
 
 
 class ArmorSerializer(serializers.ModelSerializer):
