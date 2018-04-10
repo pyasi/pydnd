@@ -34,13 +34,6 @@ class SkillList(generics.ListCreateAPIView):
         return Response(model_to_dict(skill_object), status.HTTP_200_OK)
 
 
-def get_attribute_by_name(data, attribute_name, model_type):
-    attribute_value = data.pop(attribute_name)
-    attribute_to_get = attribute_value['name']
-    attribute_model = get_object_or_404(model_type, name__iexact=attribute_to_get)
-    return attribute_model
-
-
 class GetAbilityScore(APIView):
 
     def get(self, request, name_or_id):
@@ -102,3 +95,10 @@ class GetSpell(APIView):
         spell['school'] = magic_school
 
         return Response(spell, status.HTTP_200_OK)
+
+
+def get_attribute_by_name(data, attribute_name, model_type):
+    attribute_value = data.pop(attribute_name)
+    attribute_to_get = attribute_value['name']
+    attribute_model = get_object_or_404(model_type, name__iexact=attribute_to_get)
+    return attribute_model
