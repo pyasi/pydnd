@@ -6,13 +6,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist
-<<<<<<< HEAD
-from .models import Equipment, Armor, Weapon, EquipmentSubCategory, EquipmentCategory, ArmorCategory
-from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer
-=======
-from .models import Equipment, Armor, Weapon, EquipmentSubCategory, EquipmentCategory
-from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer,EquipmentSubCategoryLstSerializer, EquipmentListSerializer
->>>>>>> master
+
+from .models import Equipment, Armor, Weapon, EquipmentSubCategory, EquipmentCategory,ArmorCategory
+from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer,EquipmentSubCategoryListSerializer, EquipmentListSerializer
+
 
 
 #List of all equipment
@@ -106,12 +103,13 @@ class EquipmentSubCategoryList(generics.ListCreateAPIView):
     serializer_class = EquipmentSubCategorySerializer
 
 
-<<<<<<< HEAD
+
 class ArmorCategoryList(generics.ListCreateAPIView):
 
     queryset = ArmorCategory.objects.all()
     serializer_class =  EquipmentCategorySerializer
-=======
+
+
 #TODO Remove Post
 #List of all equipment
 class EquipmentList(generics.ListCreateAPIView):
@@ -179,7 +177,7 @@ class EquipmentGet(APIView):
         queryset_dict["equipment_category"]=equipment_category_dict
 
         return Response(queryset_dict, status=status.HTTP_200_OK)
->>>>>>> master
+
 
 
 class ArmorList(APIView):

@@ -30,7 +30,7 @@ class EquipmentSubCategorySerializer(serializers.ModelSerializer):
         model = EquipmentSubCategory
         fields = ('id','name','equipment_category')
 
-class EquipmentSubCategoryLstSerializer(serializers.ModelSerializer):
+class EquipmentSubCategoryListSerializer(serializers.ModelSerializer):
 
 
     class Meta:
