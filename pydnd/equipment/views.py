@@ -8,7 +8,7 @@ from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Equipment, Armor, Weapon, EquipmentSubCategory, EquipmentCategory,ArmorCategory
-from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer,EquipmentSubCategoryListSerializer, EquipmentListSerializer, ArmorSerializer
+from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer,EquipmentSubCategoryListSerializer, EquipmentListSerializer, ArmorSerializer, ArmorCategorySerializer
 
 
 
@@ -104,10 +104,6 @@ class EquipmentSubCategoryList(generics.ListCreateAPIView):
 
 
 
-class ArmorCategoryList(generics.ListCreateAPIView):
-
-    queryset = ArmorCategory.objects.all()
-    serializer_class =  EquipmentCategorySerializer
 
 
 #TODO Remove Post
@@ -180,21 +176,12 @@ class EquipmentGet(APIView):
 
 
 
-class ArmorList(APIView):
-
-    def get(self, request):
-        armor = Armor.objects.all()
-        data = ArmorListSerializer(armor, many=True).data
-        return Response(data)
-
-
 class WeaponList(APIView):
 
     def get(self, request):
         weapon = Weapon.objects.all()
         data = WeaponListSerializer(weapon, many=True).data
         return Response(data)
-
 
 
 #TODO Remove Post
@@ -212,17 +199,21 @@ class ArmorList(generics.ListCreateAPIView):
             armor_object = armor.save()
             armor_object.armor_category = armor_category
             armor_object = armor_object.save()
-
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        return Response(model_to_dict(armor_object), status.HTTP_200_OK)
+        return Response(data)
 
     queryset = Armor.objects.all()
     serializer_class = ArmorListSerializer
 
 
+class ArmorCategoryList(generics.ListCreateAPIView):
+
+    queryset = ArmorCategory.objects.all()
+    serializer_class = ArmorCategorySerializer
+
+
 def get_attribute_by_name(data, attribute_name, model_type):
     attribute_value = data.pop(attribute_name)
-    attribute_to_get = attribute_value['name']
-    attribute_model = get_object_or_404(model_type, name__iexact=attribute_to_get)
+    attribute_model = get_object_or_404(model_type, name__iexact=attribute_value)
     return attribute_model

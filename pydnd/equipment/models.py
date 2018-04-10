@@ -54,7 +54,7 @@ class Armor(models.Model):
     armor_category = models.ForeignKey(ArmorCategory, on_delete=models.CASCADE, null = True)
     armor_class=models.IntegerField()
     dex_bonus=models.BooleanField()
-    armor_bonus=models.IntegerField()
+    armor_bonus=models.IntegerField(null=True)
     weight = models.IntegerField()
     str_min=models.IntegerField()
     stealth_dis = models.BooleanField()
