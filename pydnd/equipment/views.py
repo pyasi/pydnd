@@ -197,7 +197,8 @@ class ArmorList(generics.ListCreateAPIView):
             armor_object = armor_object.save()
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        return Response(data)
+
+        return Response(model_to_dict(armor_object))
 
     queryset = Armor.objects.all()
     serializer_class = ArmorListSerializer
@@ -214,28 +215,11 @@ class ArmorGet(APIView):
 
         armor_category = get_object_or_404(ArmorCategory, pk =int(queryset.armor_category.id))
 
-        queryset_dict = {}
+        queryset_dict = model_to_dict(queryset)
 
-        try:
-            armor_category_dict ={}
-            armor_category_dict["id"] = armor_category.id
-            armor_category_dict["name"] = armor_category.name
+        armor_category_dict = model_to_dict(armor_category)
 
-            queryset_dict["id"]=queryset.id
-            queryset_dict["name"]=queryset.name
-            queryset_dict["desc"]=queryset.desc
-            queryset_dict["armor_category"]= armor_category_dict
-            queryset_dict["armor_class"]=queryset.armor_class
-            queryset_dict["dex_bonus"]=queryset.dex_bonus
-            queryset_dict["armor_bonus"]=queryset.armor_bonus
-            queryset_dict["weight"]=queryset.weight
-            queryset_dict["str_min"]=queryset.str_min
-            queryset_dict["stealth_dis"]=queryset.stealth_dis
-            queryset_dict["cost_quantity"]=queryset.cost_quantity
-            queryset_dict["cost_denom"]=queryset.cost_denom
-
-        except KeyError:
-            raise Http404
+        queryset_dict["armor_category"] = armor_category_dict
 
         return Response(queryset_dict, status=status.HTTP_200_OK)
 
