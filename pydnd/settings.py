@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'pydnd.monsters',
     'pydnd.mechanics',
     'pydnd.equipment',
-    'pydnd.character'
 ]
 
 MIDDLEWARE = [
