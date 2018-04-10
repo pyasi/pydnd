@@ -206,6 +206,42 @@ class ArmorList(generics.ListCreateAPIView):
     queryset = Armor.objects.all()
     serializer_class = ArmorListSerializer
 
+class ArmorGet(APIView):
+
+    def get(self, request, name_or_id):
+
+        if name_or_id.isdigit():
+            queryset = get_object_or_404(Armor, pk = int(name_or_id))
+        else:
+            queryset = get_object_or_404(Armor, name = name_or_id)
+
+        armor_category = get_object_or_404(ArmorCategory, pk =int(queryset.armor_category.id))
+
+        queryset_dict = {}
+
+        try:
+            armor_category_dict ={}
+            armor_category_dict["id"] = armor_category.id
+            armor_category_dict["name"] = armor_category.name
+
+            queryset_dict["id"]=queryset.id
+            queryset_dict["name"]=queryset.name
+            queryset_dict["desc"]=queryset.desc
+            queryset_dict["armor_category"]= armor_category_dict
+            queryset_dict["armor_class"]=queryset.armor_class
+            queryset_dict["dex_bonus"]=queryset.dex_bonus
+            queryset_dict["armor_bonus"]=queryset.armor_bonus
+            queryset_dict["weight"]=queryset.weight
+            queryset_dict["str_min"]=queryset.str_min
+            queryset_dict["stealth_dis"]=queryset.stealth_dis
+            queryset_dict["cost_quantity"]=queryset.cost_quantity
+            queryset_dict["cost_denom"]=queryset.cost_denom
+
+        except KeyError:
+            raise Http404
+
+        return Response(queryset_dict, status=status.HTTP_200_OK)
+
 
 class ArmorCategoryList(generics.ListCreateAPIView):
 

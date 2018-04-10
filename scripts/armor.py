@@ -38,7 +38,7 @@ for i in range(38, 51):
 
     '''name = models.CharField(max_length=100, unique=True)
     desc = models.CharField(max_length=10000)
-    armor_category = models.ForeignKey(ArmorCategory, on_delete=models.CASCADE, null = True)
+    armor_category
     armor_class=models.IntegerField()
     dex_bonus=models.BooleanField()
     armor_bonus=models.IntegerField()
