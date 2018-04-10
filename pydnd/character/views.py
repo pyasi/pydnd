@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from django.forms.models import model_to_dict
 from rest_framework.views import APIView
 
-from .models import AbilityScore, Skill
-from .serializers import AbilityScoreListSerializer, AbilityScoreSerializer, SkillListSerializer, SkillSerializer
+from .models import AbilityScore, Skill, Spell, MagicSchool
+from .serializers import AbilityScoreListSerializer, AbilityScoreSerializer, SkillListSerializer, SkillSerializer, SpellsListSerializer, SpellsSerializer
 
 
 class AbilityScoreList(generics.ListCreateAPIView):
@@ -62,7 +62,43 @@ class GetSkill(APIView):
             queryset = get_object_or_404(Skill, name__iexact=name_or_id)
 
         skill = model_to_dict(queryset)
-        ability_score = model_to_dict(get_object_or_404(AbilityScore, id=skill['id']))
+        ability_score = model_to_dict(get_object_or_404(AbilityScore, id=skill['ability_score']))
         skill['ability_score'] = ability_score
 
         return Response(skill, status.HTTP_200_OK)
+
+
+class SpellList(generics.ListCreateAPIView):
+
+    queryset = Spell.objects.all()
+    serializer_class = SpellsListSerializer
+
+    def post(self, request, *args, **kwargs):
+
+        data = request.data
+
+        magic_school = get_attribute_by_name(data, 'school', MagicSchool)
+        spell = SpellsSerializer(data=data)
+        if spell.is_valid():
+            spell_object = spell.save()
+            spell_object.school = magic_school
+            spell_object = spell.save()
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(model_to_dict(spell_object), status.HTTP_200_OK)
+
+
+class GetSpell(APIView):
+
+    def get(self, request, name_or_id):
+
+        if name_or_id.isdigit():
+            queryset = get_object_or_404(Spell, id=int(name_or_id))
+        else:
+            queryset = get_object_or_404(Spell, name__iexact=name_or_id)
+
+        spell = model_to_dict(queryset)
+        magic_school = model_to_dict(get_object_or_404(MagicSchool, id=spell['school']))
+        spell['school'] = magic_school
+
+        return Response(spell, status.HTTP_200_OK)

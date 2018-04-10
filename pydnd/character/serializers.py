@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import AbilityScore, Skill
+from .models import AbilityScore, Skill, Spell
 
 
 class AbilityScoreSerializer(serializers.ModelSerializer):
@@ -28,3 +28,16 @@ class SkillListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Skill
         fields = ('id', 'name')
+
+
+class SpellsListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Spell
+        fields = ('id', 'name')
+
+class SpellsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Spell
+        fields = '__all__'
