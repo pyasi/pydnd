@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import AbilityScore, Skill
 
-# Register your models here.
+admin.site.register(AbilityScore)
+admin.site.register(Skill)
+

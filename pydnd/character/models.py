@@ -15,7 +15,7 @@ class Skill(models.Model):
 
     name = models.CharField(max_length=100, unique=True)
     desc = models.CharField(max_length=10000)
-    ability_score = models.ForeignKey(AbilityScore, on_delete=models.CASCADE)
+    ability_score = models.ForeignKey(AbilityScore, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name

@@ -12,14 +12,14 @@ class AbilityScoreSerializer(serializers.ModelSerializer):
 class AbilityScoreListSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Skill
+        model = AbilityScore
         fields = ('id', 'name')
 
 
 class SkillSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = AbilityScore
+        model = Skill
         fields = '__all__'
 
 
