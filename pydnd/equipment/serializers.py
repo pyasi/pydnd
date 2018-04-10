@@ -39,19 +39,12 @@ class EquipmentSubCategoryListSerializer(serializers.ModelSerializer):
 
 
 
-
 class ArmorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Armor
         fields = '__all__'
 
-
-class EquipmentListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Equipment
-        fields = ('id', 'name')
 
 
 class WeaponListSerializer(serializers.ModelSerializer):
@@ -60,11 +53,6 @@ class WeaponListSerializer(serializers.ModelSerializer):
         model = Weapon
         fields = ('id', 'name')
 
-class ArmorListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Armor
-        fields = ('id', 'name')
 
 
 
@@ -72,8 +60,7 @@ class ArmorCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ArmorCategory
-        fields = '__all__'
-
+        fields = ('id', 'name')
 
 
 class WeaponCategorySerializer(serializers.ModelSerializer):
@@ -81,6 +68,15 @@ class WeaponCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = WeaponCategory
         fields = '__all__'
+
+
+class ArmorListSerializer(serializers.ModelSerializer):
+
+    armor_category=ArmorCategorySerializer(read_only=True)
+
+    class Meta:
+        model = Armor
+        fields = ('id', 'name', 'armor_category')
 
 
 class WeaponPropertySerializer(serializers.ModelSerializer):
