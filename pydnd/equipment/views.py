@@ -234,7 +234,18 @@ class WeaponPropertyList(generics.ListCreateAPIView):
     queryset = WeaponProperty.objects.all()
     serializer_class = WeaponPropertySerializer
 
+class WeaponPropertyGet(APIView):
 
+    def get(self, request, name_or_id):
+
+        if name_or_id.isdigit():
+            queryset = get_object_or_404(WeaponProperty, pk = int(name_or_id))
+        else:
+            queryset = get_object_or_404(WeaponProperty, name = name_or_id)
+
+        queryset_dict = model_to_dict(queryset)
+
+        return Response(queryset_dict, status=status.HTTP_200_OK)
 
 def get_attribute_by_name(data, attribute_name, model_type):
     attribute_value = data.pop(attribute_name)

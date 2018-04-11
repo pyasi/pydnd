@@ -84,7 +84,7 @@ class WeaponPropertySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WeaponProperty
-        fields = ('id','name','desc')
+        fields = ('id','name')
 
 
 
