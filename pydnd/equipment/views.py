@@ -7,8 +7,8 @@ from rest_framework.response import Response
 from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import Equipment, Armor, Weapon, EquipmentSubCategory, EquipmentCategory,ArmorCategory
-from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer,EquipmentSubCategoryListSerializer, EquipmentListSerializer, ArmorSerializer, ArmorCategorySerializer
+from .models import Equipment, Armor, Weapon, EquipmentSubCategory, EquipmentCategory,ArmorCategory, WeaponProperty
+from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer,EquipmentSubCategoryListSerializer, EquipmentListSerializer, ArmorSerializer, ArmorCategorySerializer,WeaponPropertySerializer
 
 
 
@@ -228,6 +228,12 @@ class ArmorCategoryList(generics.ListCreateAPIView):
 
     queryset = ArmorCategory.objects.all()
     serializer_class = ArmorCategorySerializer
+
+class WeaponPropertyList(generics.ListCreateAPIView):
+
+    queryset = WeaponProperty.objects.all()
+    serializer_class = WeaponPropertySerializer
+
 
 
 def get_attribute_by_name(data, attribute_name, model_type):
