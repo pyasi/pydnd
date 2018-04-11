@@ -8,8 +8,8 @@ from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Equipment, Armor, Weapon, EquipmentSubCategory, EquipmentCategory,ArmorCategory, WeaponProperty, WeaponCategory
-from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer,EquipmentSubCategoryListSerializer, EquipmentListSerializer, ArmorSerializer, ArmorCategorySerializer,WeaponPropertySerializer,WeaponCategorySerializer
-
+from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer,EquipmentSubCategoryListSerializer, EquipmentListSerializer, ArmorSerializer, ArmorCategorySerializer,WeaponPropertySerializer,WeaponCategorySerializer, WeaponSerializer
+from pydnd.mechanics.models import DamageType
 
 
 #List of all equipment
@@ -257,7 +257,97 @@ class WeaponCategoryList(generics.ListCreateAPIView):
 
 
 
+
+#TODO Remove Post
+#List of equipment sub categories
+class WeaponList(generics.ListCreateAPIView):
+
+    def post(self, request, *args, **kwargs):
+
+        data = request.data
+        data_check=data
+        try:
+            weapon_property_check = data_check["properties"]
+            weapon_property = get_attribute_by_name_multiple(data, 'properties', WeaponProperty)
+        except KeyError:
+            pass
+
+        try:
+            special_property_check = data["specialproperties"]
+            special_property = WeaponProperty.objects.filter(desc=data["specialproperties"])
+        except KeyError:
+            pass
+
+        weapon_category= get_attribute_by_name(data, 'weapon_category', WeaponCategory)
+
+        damage_type = data.pop('damage_type')
+        damage_type = DamageType.objects.filter(name=damage_type["name"])
+
+        weapon = WeaponSerializer(data=data)
+        if weapon.is_valid():
+            weapon_object = weapon.save()
+            weapon_object.weapon_category = weapon_category
+            try:
+                weapon_property_check = data_check["properties"]
+                for property in weapon_property:
+                    weapon_object.weapon_property.add(property)
+            except KeyError:
+                pass
+
+            try:
+                special_property_check = data_check["specialproperties"]
+                weapon_object.weapon_property.add(special_property)
+            except KeyError:
+                pass
+            weapon_object.damage_type =damage_type
+            weapon_object = weapon_object.save()
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(model_to_dict(weapon_object))
+
+    queryset = Weapon.objects.all()
+    serializer_class = WeaponListSerializer
+
+
+
 def get_attribute_by_name(data, attribute_name, model_type):
     attribute_value = data.pop(attribute_name)
     attribute_model = get_object_or_404(model_type, name__iexact=attribute_value)
     return attribute_model
+
+class WeaponGet(APIView):
+
+    def get(self, request, name_or_id):
+
+        if name_or_id.isdigit():
+            queryset = get_object_or_404(Weapon, pk = int(name_or_id))
+        else:
+            queryset = get_object_or_404(Weapon, name = name_or_id)
+
+        queryset_dict = model_to_dict(queryset)
+
+        return Response(queryset_dict, status=status.HTTP_200_OK)
+
+
+def get_attribute_by_name_multiple(data, attribute_name, model_type):
+    monster_attributes = []
+    try:
+        attribute_names = data.pop(attribute_name)
+        for attribute in attribute_names:
+            print(attribute["name"])
+            try:
+                attribute_model = model_type.objects.get(name__iexact=attribute["name"])
+                monster_attributes.append(attribute_model)
+            except ObjectDoesNotExist:
+
+                #TODO So many that we can't get due to wording.
+                print("Couldn't get: {}".format(attribute))
+                with open('failures.txt', 'a') as file:
+                    pass
+                    #file.write("Data: {}, Attribute {}, Issue: {}\n".format(data['index'], attribute_name, attribute))
+    except KeyError:
+        pass
+
+    return monster_attributes
+
