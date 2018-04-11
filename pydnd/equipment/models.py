@@ -16,7 +16,7 @@ class WeaponProperty(models.Model):
 
 class WeaponCategory(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    range = models.CharField(max_length=10, unique=True)
+    range = models.CharField(max_length=10)
 
     def __str__(self):
         return self.name

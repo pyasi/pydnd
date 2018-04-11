@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ArmorList, WeaponList, EquipmentCategoryList, EquipmentSubCategoryList, EquipmentCategoryGet,EquipmentSubCategoryGet, EquipmentList, EquipmentGet,ArmorCategoryList,ArmorGet, WeaponPropertyList,WeaponPropertyGet
+from .views import ArmorList, WeaponList, EquipmentCategoryList, EquipmentSubCategoryList, EquipmentCategoryGet,EquipmentSubCategoryGet, EquipmentList, EquipmentGet,ArmorCategoryList,ArmorGet, WeaponPropertyList,WeaponPropertyGet,WeaponCategoryList
 
 urlpatterns = [
     path("armor/", ArmorList.as_view(), name="armor"),
@@ -16,5 +16,6 @@ urlpatterns = [
     path("armor_category/", ArmorCategoryList.as_view(), name="armor_category"),
     path("weapon_property/", WeaponPropertyList.as_view(), name="weapon_property"),
     path("weapon_property/<str:name_or_id>/", WeaponPropertyGet.as_view(), name="weapon_property_get"),
+    path("weapon_category/", WeaponCategoryList.as_view(), name="weapon_category"),
 
 ]
