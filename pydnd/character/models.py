@@ -35,3 +35,8 @@ class Spell(models.Model):
     casting_time = models.CharField(max_length=1000)
     level = models.IntegerField()
     school = models.ForeignKey(MagicSchool, on_delete=models.CASCADE, null=True)
+
+
+class SpellCasting(models.Model):
+
+    name = models.CharField(max_length=100, unique=True)

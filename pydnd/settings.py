@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'pydnd.mechanics',
     'pydnd.equipment',
     'pydnd.character',
+    'pydnd.character_traits'
 ]
 
 MIDDLEWARE = [
