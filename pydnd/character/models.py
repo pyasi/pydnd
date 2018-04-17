@@ -40,3 +40,9 @@ class Spell(models.Model):
 class SpellCasting(models.Model):
 
     name = models.CharField(max_length=100, unique=True)
+    ability_score = models.ManyToManyField(AbilityScore)
+    cantrips = models.CharField(max_length=10000)
+    preparing_and_casting = models.CharField(max_length=10000)
+    spellcasting_ability = models.CharField(max_length=10000)
+    ritual_casting = models.CharField(max_length=10000)
+    spellcasting_focus = models.CharField(max_length=10000)
