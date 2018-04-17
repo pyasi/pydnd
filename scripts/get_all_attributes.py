@@ -2,7 +2,7 @@ import requests
 import json
 
 dndurl = "http://dnd5eapi.co/api/"
-endpoint = 'classes/'
+endpoint = 'subclasses/'
 
 response = requests.get(dndurl + endpoint)
 body = response.json()

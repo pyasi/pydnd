@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from django.forms.models import model_to_dict
 from rest_framework.views import APIView
 
-from .models import AbilityScore, Skill, Spell, MagicSchool, SpellCasting
+from .models import AbilityScore, Skill, Spell, MagicSchool, SpellCastingClass
 from .serializers import AbilityScoreListSerializer, AbilityScoreSerializer, SkillListSerializer, SkillSerializer, SpellsListSerializer, SpellsSerializer
 
 
@@ -99,7 +99,7 @@ class GetSpell(APIView):
 
 class SpellCastingList(generics.ListCreateAPIView):
 
-    queryset = SpellCasting.objects.all()
+    queryset = SpellCastingClass.objects.all()
     serializer_class = SpellsListSerializer
 
 
@@ -108,9 +108,9 @@ class GetSpellCasting(APIView):
     def get(self, request, name_or_id):
 
         if name_or_id.isdigit():
-            queryset = get_object_or_404(SpellCasting, id=int(name_or_id))
+            queryset = get_object_or_404(SpellCastingClass, id=int(name_or_id))
         else:
-            queryset = get_object_or_404(SpellCasting, name__iexact=name_or_id)
+            queryset = get_object_or_404(SpellCastingClass, name__iexact=name_or_id)
 
         spell_casting = model_to_dict(queryset)
         ability_score = model_to_dict(get_object_or_404(MagicSchool, id=spell_casting['ability_score']))

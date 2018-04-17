@@ -37,12 +37,13 @@ class Spell(models.Model):
     school = models.ForeignKey(MagicSchool, on_delete=models.CASCADE, null=True)
 
 
-class SpellCasting(models.Model):
+class SpellCastingClass(models.Model):
 
     name = models.CharField(max_length=100, unique=True)
     ability_score = models.ManyToManyField(AbilityScore)
-    cantrips = models.CharField(max_length=10000)
-    preparing_and_casting = models.CharField(max_length=10000)
-    spellcasting_ability = models.CharField(max_length=10000)
-    ritual_casting = models.CharField(max_length=10000)
-    spellcasting_focus = models.CharField(max_length=10000)
+    cantrips = models.CharField(max_length=10000, null=True)
+    preparing_and_casting = models.CharField(max_length=10000, null=True)
+    spellcasting_ability = models.CharField(max_length=10000, null=True)
+    ritual_casting = models.CharField(max_length=10000, null=True)
+    spellcasting_focus = models.CharField(max_length=10001, null=True)
+    spell_slots = models.CharField(max_length=10000, null=True)
