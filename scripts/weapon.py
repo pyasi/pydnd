@@ -23,7 +23,7 @@ for i in range(1, 38):
             body2["range_type"]=body["weapon_range"]
             body2["normal_range"]=body["range"]["normal"]
             body2["long_range"]=body["range"]["long"]
-            body2["damage_type"]=body["damage"]["damage_type"]
+            body2["damage_type"]=body["damage"]["damage_type"]["name"]
             body2["weight"]=body["weight"]
             body2["properties"]=body["properties"]
             try:

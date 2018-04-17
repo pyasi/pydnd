@@ -68,7 +68,7 @@ class WeaponCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WeaponCategory
-        fields = '__all__'
+        fields = ('id','name')
 
 
 class ArmorListSerializer(serializers.ModelSerializer):
@@ -84,7 +84,7 @@ class WeaponPropertySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WeaponProperty
-        fields = '__all__'
+        fields = ('id','name')
 
 
 
