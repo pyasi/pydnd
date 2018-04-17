@@ -48,7 +48,7 @@ class Class(models.Model):
 
     name = models.CharField(max_length=100, unique=True)
     hit_die = models.IntegerField()
-    saving_throws = models.ManyToManyField(AbilityScore)
+    saving_throws = models.ManyToManyField(AbilityScore, null=True)
     subclasses = models.ManyToManyField(SubClass, null=True)
     spell_casting = models.ManyToManyField(SpellCastingClass, null=True)
 

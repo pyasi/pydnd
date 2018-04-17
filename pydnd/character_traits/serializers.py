@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Race, SubRace
+from .models import Race, SubRace, Class, SubClass
 
 
 class RaceSerializer(serializers.ModelSerializer):
@@ -15,6 +15,7 @@ class RaceListSerializer(serializers.ModelSerializer):
         model = Race
         fields = ('id', 'name')
 
+
 class SubRaceSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -27,3 +28,31 @@ class SubRaceListSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubRace
         fields = ('id', 'name')
+
+
+class ClassSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Class
+        fields = '__all__'
+
+
+class ClassListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Race
+        fields = ('id', 'name')
+
+
+class SubClassSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = SubClass
+        fields = '__all__'
+
+
+class SubClassListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = SubClass
+        fields = '__all__'
