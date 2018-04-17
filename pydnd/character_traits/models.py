@@ -6,7 +6,7 @@ from pydnd.character.models import AbilityScore
 class SubRace(models.Model):
 
     name = models.CharField(max_length=100, unique=True)
-    languages = models.ManyToManyField(Language, related_name="subrace_languages")
+    languages = models.ManyToManyField(Language, null=True, related_name="subrace_languages")
     language_options = models.ManyToManyField(Language, null=True, related_name="subrace_language_options")
     desc = models.CharField(max_length=10000)
 
@@ -19,7 +19,7 @@ class SubRace(models.Model):
 class Race(models.Model):
 
     name = models.CharField(max_length=100, unique=True)
-    languages = models.ManyToManyField(Language, related_name="languages")
+    languages = models.ManyToManyField(Language, null=True, related_name="languages")
     language_options = models.ManyToManyField(Language, null=True, related_name="language_options")
     language_desc = models.CharField(max_length=10000, null=True)
     size = models.CharField(max_length=10000)
