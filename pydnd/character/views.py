@@ -113,7 +113,7 @@ class GetSpellCasting(APIView):
             queryset = get_object_or_404(SpellCastingClass, name__iexact=name_or_id)
 
         spell_casting = model_to_dict(queryset)
-        ability_score = model_to_dict(get_object_or_404(MagicSchool, id=spell_casting['ability_score']))
+        ability_score = model_to_dict(get_object_or_404(AbilityScore, id=spell_casting['ability_score']))
         spell_casting['ability_score'] = ability_score
 
         return Response(spell_casting, status.HTTP_200_OK)
