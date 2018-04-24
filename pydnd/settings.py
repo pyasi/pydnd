@@ -20,6 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+#TODO Remove
 SECRET_KEY = 'xf9m*8-5rj&9)*5yq2t)xxyt)$e0hci6g=-8jx)jf&hk9%m0v='
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'pydnd.mechanics',
     'pydnd.equipment',
     'pydnd.character',
+    'pydnd.character_traits'
 ]
 
 MIDDLEWARE = [
