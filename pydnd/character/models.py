@@ -35,3 +35,15 @@ class Spell(models.Model):
     casting_time = models.CharField(max_length=1000)
     level = models.IntegerField()
     school = models.ForeignKey(MagicSchool, on_delete=models.CASCADE, null=True)
+
+
+class SpellCastingClass(models.Model):
+
+    name = models.CharField(max_length=100, unique=True)
+    ability_score = models.ManyToManyField(AbilityScore)
+    cantrips = models.CharField(max_length=10000, null=True)
+    preparing_and_casting = models.CharField(max_length=10000, null=True)
+    spellcasting_ability = models.CharField(max_length=10000, null=True)
+    ritual_casting = models.CharField(max_length=10000, null=True)
+    spellcasting_focus = models.CharField(max_length=10001, null=True)
+    spell_slots = models.CharField(max_length=10000, null=True)
