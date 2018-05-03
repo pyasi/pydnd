@@ -7,8 +7,8 @@ from pydnd.mechanics.models import DamageType
 
 
 class WeaponProperty(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-    desc = models.CharField(max_length=10000)
+    name = models.CharField(max_length=100)
+    desc = models.CharField(max_length=10000, unique=True)
 
     def __str__(self):
         return self.name
@@ -16,7 +16,7 @@ class WeaponProperty(models.Model):
 
 class WeaponCategory(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    range = models.CharField(max_length=10, unique=True)
+    range = models.CharField(max_length=10)
 
     def __str__(self):
         return self.name
@@ -36,6 +36,8 @@ class Weapon(models.Model):
     damage_die = models.IntegerField()
     cost_quantity = models.IntegerField()
     cost_denom = models.CharField(max_length=2)
+    normal_throw_range = models.IntegerField(null=True)
+    long_throw_range = models.IntegerField(null=True)
 
     def __str__(self):
         return self.name

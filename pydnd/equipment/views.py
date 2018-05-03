@@ -7,9 +7,9 @@ from rest_framework.response import Response
 from django.forms.models import model_to_dict
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import Equipment, Armor, Weapon, EquipmentSubCategory, EquipmentCategory,ArmorCategory
-from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer,EquipmentSubCategoryListSerializer, EquipmentListSerializer, ArmorSerializer, ArmorCategorySerializer
-
+from .models import Equipment, Armor, Weapon, EquipmentSubCategory, EquipmentCategory,ArmorCategory, WeaponProperty, WeaponCategory
+from .serializers import EquipmentListSerializer, ArmorListSerializer, WeaponListSerializer,EquipmentSerializer, EquipmentSubCategorySerializer, EquipmentCategorySerializer,EquipmentSubCategoryListSerializer, EquipmentListSerializer, ArmorSerializer, ArmorCategorySerializer,WeaponPropertySerializer,WeaponCategorySerializer, WeaponSerializer
+from pydnd.mechanics.models import DamageType
 
 
 #List of all equipment
@@ -230,7 +230,157 @@ class ArmorCategoryList(generics.ListCreateAPIView):
     serializer_class = ArmorCategorySerializer
 
 
+class WeaponPropertyList(generics.ListCreateAPIView):
+
+    queryset = WeaponProperty.objects.all()
+    serializer_class = WeaponPropertySerializer
+
+
+class WeaponPropertyGet(APIView):
+
+    def get(self, request, name_or_id):
+
+        if name_or_id.isdigit():
+            queryset = get_object_or_404(WeaponProperty, pk = int(name_or_id))
+        else:
+            queryset = get_object_or_404(WeaponProperty, name = name_or_id)
+
+        queryset_dict = model_to_dict(queryset)
+
+        return Response(queryset_dict, status=status.HTTP_200_OK)
+
+
+class WeaponCategoryList(generics.ListCreateAPIView):
+
+    queryset = WeaponCategory.objects.all()
+    serializer_class = WeaponCategorySerializer
+
+
+
+
+#TODO Remove Post
+#List of equipment sub categories
+class WeaponList(generics.ListCreateAPIView):
+
+    def post(self, request, *args, **kwargs):
+
+        data = request.data
+        data_check=data
+        try:
+            weapon_property_check = data_check["properties"]
+            weapon_property = get_attribute_by_name_multiple(data, "properties", WeaponProperty)
+            properties = 1
+        except KeyError:
+            properties = 0
+            pass
+
+        try:
+            special_property_check = data["specialproperties"]
+            special_property = WeaponProperty.objects.filter(desc=data["specialproperties"])
+            special = 1
+        except KeyError:
+            special = 0
+            pass
+
+        weapon_category= get_attribute_by_name(data, 'weapon_category', WeaponCategory)
+
+        damage_type = data.pop('damage_type')
+        damage_type = DamageType.objects.get(name__iexact=damage_type)
+
+        weapon = WeaponSerializer(data=data)
+        if weapon.is_valid():
+            weapon_object = weapon.save()
+            weapon_object.weapon_category = weapon_category
+            if properties == 1:
+                for property in weapon_property:
+                    weapon_object.properties.add(property)
+
+            if special == 1:
+                weapon_object.properties.add(special_property)
+
+            weapon_object.damage_type=damage_type
+            weapon_object = weapon_object.save()
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(model_to_dict(weapon_object))
+
+    queryset = Weapon.objects.all()
+    serializer_class = WeaponListSerializer
+
+    def delete(self, request):
+        Weapon.objects.all().delete()
+        return Response(None, status.HTTP_202_ACCEPTED)
+
+class WeaponGet(APIView):
+
+    def get(self, request, name_or_id):
+
+        if name_or_id.isdigit():
+            queryset = get_object_or_404(Weapon, pk = int(name_or_id))
+        else:
+            queryset = get_object_or_404(Weapon, name = name_or_id)
+
+        weapon_category = get_object_or_404(WeaponCategory, pk = queryset.weapon_category.id)
+        weapon_category_dict =  model_to_dict(weapon_category)
+
+        damage_type = get_object_or_404(DamageType, pk = queryset.damage_type.id)
+        damage_type_dict =  model_to_dict(damage_type)
+
+        properties = queryset.properties.all()
+        properties_dict = {}
+        count = queryset.properties.count()
+
+        for i in range(0,count):
+            properties_dict[i] = model_to_dict(properties[i])
+
+
+        queryset_dict={}
+        queryset_dict["name"]=queryset.name
+        queryset_dict["desc"]=queryset.desc
+        queryset_dict["weapon_category"]=weapon_category_dict
+        queryset_dict["range_type"]=queryset.range_type
+        queryset_dict["normal_range"]=queryset.normal_range
+        queryset_dict["long_range"]=queryset.long_range
+        queryset_dict["damage_type"]=damage_type_dict
+        queryset_dict["weight"]=queryset.weight
+        queryset_dict["properties"]=properties_dict
+        queryset_dict["damage_die_count"]=queryset.damage_die_count
+        queryset_dict["damage_die"]=queryset.damage_die
+        queryset_dict["cost_quantity"]=queryset.cost_quantity
+        queryset_dict["cost_denom"]=queryset.cost_denom
+        queryset_dict["normal_throw_range"]=queryset.normal_throw_range
+        queryset_dict["long_throw_range"]=queryset.long_throw_range
+
+
+
+        return Response(queryset_dict, status=status.HTTP_200_OK)
+
+
 def get_attribute_by_name(data, attribute_name, model_type):
     attribute_value = data.pop(attribute_name)
     attribute_model = get_object_or_404(model_type, name__iexact=attribute_value)
     return attribute_model
+
+
+def get_attribute_by_name_multiple(data, attribute_name, model_type):
+    monster_attributes = []
+    try:
+        attribute_names = data.pop(attribute_name)
+        for attribute in attribute_names:
+            print(attribute["name"])
+            try:
+                attribute_model = model_type.objects.get(name__iexact=attribute["name"])
+                monster_attributes.append(attribute_model)
+            except ObjectDoesNotExist:
+
+                #TODO So many that we can't get due to wording.
+                print("Couldn't get: {}".format(attribute))
+                with open('failures.txt', 'a') as file:
+                    pass
+                    #file.write("Data: {}, Attribute {}, Issue: {}\n".format(data['index'], attribute_name, attribute))
+    except KeyError:
+        pass
+
+    return monster_attributes
+

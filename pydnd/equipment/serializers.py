@@ -68,7 +68,7 @@ class WeaponCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WeaponCategory
-        fields = '__all__'
+        fields = ('id','name')
 
 
 class ArmorListSerializer(serializers.ModelSerializer):
@@ -84,11 +84,11 @@ class WeaponPropertySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WeaponProperty
-        fields = '__all__'
+        fields = ('id','name')
 
 
 
-class WeaponSerializer(serializers.ModelSerializer):
+class WeaponGetSerializer(serializers.ModelSerializer):
 
     weapon_category = WeaponCategorySerializer
     weapon_property = WeaponPropertySerializer
@@ -96,3 +96,12 @@ class WeaponSerializer(serializers.ModelSerializer):
     class Meta:
         model = Weapon
         fields = '__all__'
+
+
+
+class WeaponSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Weapon
+        fields = '__all__'
+
